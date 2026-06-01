@@ -5,5 +5,8 @@ sources:
     schema: public
     tables:
       - name: ess_main_raw
+        description: "Main individual level survey data"
       - name: ess_multilevel_nuts1
-      - name: ess_multilevel_region_lookup_filtered
+        description: "NUTS 1 Region Statistics"
+      - name: region_lookup_lean
+        description: "Region lookup keys for merging across different NUTS granularities"
