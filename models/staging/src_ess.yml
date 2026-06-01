@@ -1,0 +1,9 @@
+version: 2
+
+sources:
+  - name: ess_source
+    schema: public
+    tables:
+      - name: ess_main_raw
+      - name: ess_multilevel_nuts1
+      - name: ess_multilevel_region_lookup_filtered
