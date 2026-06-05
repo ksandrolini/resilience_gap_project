@@ -5,6 +5,7 @@ logs/
 target/
 .env
 modules/
+ESS_raw_data/
 
 # System files
 .DS_Store

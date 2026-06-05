@@ -1,0 +1,389 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2487.7">
+  <style type="text/css">
+    li.li3 {margin: 0.0px 0.0px 12.0px 0.0px; font: 14.0px Helvetica; -webkit-text-stroke: #000000}
+    span.s1 {font-kerning: none}
+    span.s2 {-webkit-text-stroke: 0px #000000}
+    ul.ul1 {list-style-type: disc}
+    ul.ul2 {list-style-type: circle}
+    ul.ul3 {list-style-type: square}
+  </style>
+</head>
+<body>
+<h1 style="margin: 0.0px 0.0px 16.1px 0.0px; font: 26.0px Helvetica; -webkit-text-stroke: #000000"><span class="s1"><b>European Social Survey (Round 11) — Filtered Codebook</b></span></h1>
+<h2 style="margin: 0.0px 0.0px 14.9px 0.0px; font: 20.0px Helvetica; -webkit-text-stroke: #000000"><span class="s1"><b>1. Core Demographics &amp; Geography</b></span></h2>
+<ul class="ul1">
+  <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Variable Name:</b> idno</span></li>
+  <ul class="ul2">
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Custom Alias:</b> respondent_id</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Description:</b> Respondent's unique identification number.</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Scale Type:</b> Continuous / Discrete ID.</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Missing Values:</b> None (System generated).</span></li>
+  </ul>
+  <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Variable Name:</b> cntry</span></li>
+  <ul class="ul2">
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Custom Alias:</b> country_code</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Description:</b> Two-letter ISO country code identifying the country of interview (e.g., FR, DE, GR, IT, PL, ES, SE).</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Scale Type:</b> Categorical / Nominal string.</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Missing Values:</b> None.</span></li>
+  </ul>
+  <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Variable Name:</b> regunit</span></li>
+  <ul class="ul2">
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Custom Alias:</b> nuts_level</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Description:</b> Regional unit level indicating the NUTS structural depth used for sampling within the specific country.</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Scale Type:</b> Categorical.</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Missing Values:</b> None.</span></li>
+  </ul>
+  <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Variable Name:</b> region</span></li>
+  <ul class="ul2">
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Custom Alias:</b> nuts_region</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Description:</b> Subnational region code matching the standard Eurostat Nomenclature of Territorial Units for Statistics (NUTS) classification (typically NUTS 1 or NUTS 2).</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Scale Type:</b> Nominal alphanumeric code.</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Missing Values:</b> NA (Not available).</span></li>
+  </ul>
+</ul>
+<h2 style="margin: 0.0px 0.0px 14.9px 0.0px; font: 20.0px Helvetica; -webkit-text-stroke: #000000"><span class="s1"><b>2. Survey Weights</b></span></h2>
+<ul class="ul1">
+  <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Variable Name:</b> dweight</span></li>
+  <ul class="ul2">
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Custom Alias:</b> design_wt</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Description:</b> Design weight adjusted for differences in select probabilities across sampling frames.</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Scale Type:</b> Continuous numeric.</span></li>
+  </ul>
+  <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Variable Name:</b> pspwght</span></li>
+  <ul class="ul2">
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Custom Alias:</b> post_stratification_wt</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Description:</b> Post-stratification weight including design weight, calibrated to national population parameters (gender, age, education, and region).</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Scale Type:</b> Continuous numeric.</span></li>
+  </ul>
+  <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Variable Name:</b> pweight</span></li>
+  <ul class="ul2">
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Custom Alias:</b> pop_size_wt</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Description:</b> Population size weight used to scale samples proportionally to the actual size of each country's total population.</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Scale Type:</b> Continuous numeric.</span></li>
+  </ul>
+  <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Variable Name:</b> anweight</span></li>
+  <ul class="ul2">
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Custom Alias:</b> analysis_wt</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Description:</b> Calculated analysis weight (pspwght $\times$ pweight) required when pooling multi-country samples to prevent small-population nations from being over-represented or distorted by larger nations.</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Scale Type:</b> Continuous numeric.</span></li>
+  </ul>
+</ul>
+<h2 style="margin: 0.0px 0.0px 14.9px 0.0px; font: 20.0px Helvetica; -webkit-text-stroke: #000000"><span class="s1"><b>3. News, Politics, &amp; Current Affairs</b></span></h2>
+<ul class="ul1">
+  <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Variable Name:</b> nwspol</span></li>
+  <ul class="ul2">
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Custom Alias:</b> news_pol_CA_mins_daily</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Description:</b> On a typical day, about how much time do you spend watching, reading, or listening to news about politics and current affairs?</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Scale Type:</b> Continuous (measured in minutes).</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Missing / Ghost Values:</b> 7777 (Refusal), 8888 (Don't know), 9999 (No answer).</span></li>
+  </ul>
+  <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Variable Name:</b> polintr</span></li>
+  <ul class="ul2">
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Custom Alias:</b> polintr</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Description:</b> How interested are you in politics?</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Scale Type:</b> 4-point ordinal scale (1 = Very interested, 2 = Quite interested, 3 = Hardly interested, 4= Not at all interested).</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Missing / Ghost Values:</b> 7 (Refusal), 8 (Don't know), 9 (No answer).</span></li>
+  </ul>
+  <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Variable Name:</b> psppsgva</span></li>
+  <ul class="ul2">
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Custom Alias:</b> personal_say_govt</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Description:</b> How much would you say that the political system in [country] allows people like you to have a say in what the government does?</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Scale Type:</b> 5-point ordinal scale (1 = Not at all, 2 = Very little, 3 = Some, 4 = A lot, 5 = A great deal).</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Missing / Ghost Values:</b> 7 (Refusal), 8 (Don't know), 9 (No answer).</span></li>
+  </ul>
+  <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Variable Name:</b> psppipla</span></li>
+  <ul class="ul2">
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Custom Alias:</b> personal_influence_politics</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Description:</b> How much would you say that the political system in [country] allows people like you to have an influence on politics?</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Scale Type:</b> 5-point ordinal scale (1 = Not at all, 2 = Very little, 3 = Some, 4 = A lot, 5 = A great deal).</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Missing / Ghost Values:</b> 7 (Refusal), 8 (Don't know), 9 (No answer).</span></li>
+  </ul>
+</ul>
+<h2 style="margin: 0.0px 0.0px 14.9px 0.0px; font: 20.0px Helvetica; -webkit-text-stroke: #000000"><span class="s1"><b>4. Systemic Trust Vectors</b></span></h2>
+<ul class="ul1">
+  <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Variable Name:</b> ppltrst</span></li>
+  <ul class="ul2">
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Custom Alias:</b> ppltrst</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Description:</b> Generally speaking, would you say that most people can be trusted, or that you can't be too careful in dealing with people?</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Scale Type:</b> 11-point continuous scale (0 = You can't be too careful, to 10 = Most people can be trusted).</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Missing / Ghost Values:</b> 77 (Refusal), 88 (Don't know), 99 (No answer). <i>(Note: 7, 8, and 9 are valid scores).</i></span></li>
+  </ul>
+  <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Variable Name:</b> trstprl</span></li>
+  <ul class="ul2">
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Custom Alias:</b> trstprl</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Description:</b> Trust in your country's Parliament.</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Scale Type:</b> 11-point continuous scale (0 = No trust at all, to 10 = Complete trust).</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Missing / Ghost Values:</b> 77 (Refusal), 88 (Don't know), 99 (No answer).</span></li>
+  </ul>
+  <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Variable Name:</b> trstlgl</span></li>
+  <ul class="ul2">
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Custom Alias:</b> trstlgl</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Description:</b> Trust in the legal system.</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Scale Type:</b> 11-point continuous scale (0 = No trust at all, to 10 = Complete trust).</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Missing / Ghost Values:</b> 77 (Refusal), 88 (Don't know), 99 (No answer).</span></li>
+  </ul>
+  <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Variable Name:</b> trstprt</span></li>
+  <ul class="ul2">
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Custom Alias:</b> trst_pol_parties</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Description:</b> Trust in political parties.</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Scale Type:</b> 11-point continuous scale (0 = No trust at all, to 10 = Complete trust).</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Missing / Ghost Values:</b> 77 (Refusal), 88 (Don't know), 99 (No answer).</span></li>
+  </ul>
+  <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Variable Name:</b> trstep</span></li>
+  <ul class="ul2">
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Custom Alias:</b> trt_euro_parl</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Description:</b> Trust in the European Parliament.</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Scale Type:</b> 11-point continuous scale (0 = No trust at all, to 10 = Complete trust).</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Missing / Ghost Values:</b> 77 (Refusal), 88 (Don't know), 99 (No answer).</span></li>
+  </ul>
+</ul>
+<h2 style="margin: 0.0px 0.0px 14.9px 0.0px; font: 20.0px Helvetica; -webkit-text-stroke: #000000"><span class="s1"><b>5. Voting &amp; Ideology</b></span></h2>
+<ul class="ul1">
+  <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Variable Name:</b> vote</span></li>
+  <ul class="ul2">
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Custom Alias:</b> vote_yn</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Description:</b> Did you vote in the last national election in [country]?</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Scale Type:</b> Binary/Nominal categorical (1 = Yes, 2 = No, 3 = Not eligible to vote).</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Missing / Ghost Values:</b> 7 (Refusal), 8 (Don't know), 9 (No answer).</span></li>
+  </ul>
+  <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Variable Names:</b> prtvtffr, prtvgde2, prtvtegr, prtvteit, prtvtfpl, prtvtges, prtvtese</span></li>
+  <ul class="ul2">
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Custom Aliases:</b> vote_fr, vote_de2, vote_gr, vote_it, vote_pl, vote_es, vote_se</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Description:</b> National political party voted for in the last national election. Country-specific coding matching national ballot lines.</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Scale Type:</b> Nominal Categorical codes.</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Targeted Missing / Country Omission Values:</b></span></li>
+    <ul class="ul3">
+      <li class="li3"><span class="s2"><i></i></span><span class="s1"><i>All variables:</i> 66 (NA), 77 (Refusal), 88 (Don’t know), 99 (No answer)</span></li>
+      <li class="li3"><span class="s2"></span><span class="s1">vote_fr / vote_it: 31 (Other).</span></li>
+      <li class="li3"><span class="s2"></span><span class="s1">vote_de2: 55 (Other).</span></li>
+      <li class="li3"><span class="s2"></span><span class="s1">vote_gr: 32, 33 (Invalid / Blank).</span></li>
+      <li class="li3"><span class="s2"></span><span class="s1">vote_pl: 6 (Other).</span></li>
+      <li class="li3"><span class="s2"></span><span class="s1">vote_es: 50 (Other), 51, 52 (Invalid / Blank).</span></li>
+      <li class="li3"><span class="s2"></span><span class="s1">vote_se: 9 (Other).</span></li>
+    </ul>
+  </ul>
+  <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Variable Name:</b> lrscale</span></li>
+  <ul class="ul2">
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Custom Alias:</b> left_right_alignment</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Description:</b> In politics people sometimes talk of "left" and "right". Where would you place yourself on this scale?</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Scale Type:</b> 11-point continuous scale (0 = Left, to 10 = Right).</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Missing / Ghost Values:</b> 77 (Refusal), 88 (Don't know), 99 (No answer).</span></li>
+  </ul>
+  <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Variable Name:</b> euftf</span></li>
+  <ul class="ul2">
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Custom Alias:</b> eu_role</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Description:</b> Now thinking about the European Union, do you think that European unification should go further or has it already gone too far?</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Scale Type:</b> 11-point continuous scale (0 = Unification has already gone too far, to 10 = Unification should go further).</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Missing / Ghost Values:</b> 77 (Refusal), 88 (Don't know), 99 (No answer).</span></li>
+  </ul>
+</ul>
+<h2 style="margin: 0.0px 0.0px 14.9px 0.0px; font: 20.0px Helvetica; -webkit-text-stroke: #000000"><span class="s1"><b>6. Institutional &amp; Life Satisfaction</b></span></h2>
+<ul class="ul1">
+  <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Variable Name:</b> stflife</span></li>
+  <ul class="ul2">
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Custom Alias:</b> sat_life</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Description:</b> All things considered, how satisfied are you with your life as a whole nowadays?</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Scale Type:</b> 11-point continuous scale (0 = Extremely dissatisfied, to 10 = Extremely satisfied).</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Missing / Ghost Values:</b> 77 (Refusal), 88 (Don't know), 99 (No answer).</span></li>
+  </ul>
+  <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Variable Name:</b> stfeco</span></li>
+  <ul class="ul2">
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Custom Alias:</b> sat_economy</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Description:</b> On the whole, how satisfied are you with the present state of the economy in [country]?</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Scale Type:</b> 11-point continuous scale (0 = Extremely dissatisfied, to 10 = Extremely satisfied).</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Missing / Ghost Values:</b> 77 (Refusal), 88 (Don't know), 99 (No answer).</span></li>
+  </ul>
+  <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Variable Name:</b> stfgov</span></li>
+  <ul class="ul2">
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Custom Alias:</b> sat_gov</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Description:</b> Now thinking about the national government, how satisfied are you with the way it is doing its job?</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Scale Type:</b> 11-point continuous scale (0 = Extremely dissatisfied, to 10 = Extremely satisfied).</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Missing / Ghost Values:</b> 77 (Refusal), 88 (Don't know), 99 (No answer).</span></li>
+  </ul>
+  <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Variable Name:</b> stfdem</span></li>
+  <ul class="ul2">
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Custom Alias:</b> sat_demo</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Description:</b> On the whole, how satisfied are you with the way democracy works in [country]?</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Scale Type:</b> 11-point continuous scale (0 = Extremely dissatisfied, to 10 = Extremely satisfied).</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Missing / Ghost Values:</b> 77 (Refusal), 88 (Don't know), 99 (No answer).</span></li>
+  </ul>
+</ul>
+<h2 style="margin: 0.0px 0.0px 14.9px 0.0px; font: 20.0px Helvetica; -webkit-text-stroke: #000000"><span class="s1"><b>7. Policy &amp; Macro Attitudes</b></span></h2>
+<ul class="ul1">
+  <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Variable Name:</b> gincdif</span></li>
+  <ul class="ul2">
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Custom Alias:</b> govt_role_income_inequality</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Description:</b> The government should take measures to reduce differences in income levels.</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Scale Type:</b> 5-point Likert/Ordinal scale (1 = Agree strongly, 2 = Agree, 3 = Neither agree nor disagree, 4 = Disagree, 5 = Disagree strongly).</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Missing / Ghost Values:</b> 7 (Refusal), 8 (Don't know), 9 (No answer).</span></li>
+  </ul>
+  <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Variable Name:</b> imdfetn</span></li>
+  <ul class="ul2">
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Custom Alias:</b> allow_diverse_immigrants</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Description:</b> To what extent should [country] allow people of a different race or ethnic group from most [country] people to come and live here?</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Scale Type:</b> 4-point ordinal scale (1 = Allow many, 2 = Allow some, 3 = Allow a few, 4 = Allow none).</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Missing / Ghost Values:</b> 7 (Refusal), 8 (Don't know), 9 (No answer).</span></li>
+  </ul>
+  <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Variable Name:</b> imbgeco</span></li>
+  <ul class="ul2">
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Custom Alias:</b> immigration_impact_economy</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Description:</b> Would you say it is generally bad or good for [country]'s economy that people come to live here from other countries?</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Scale Type:</b> 11-point continuous scale (0 = Bad for the economy, to 10 = Good for the economy).</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Missing / Ghost Values:</b> 77 (Refusal), 88 (Don't know), 99 (No answer).</span></li>
+  </ul>
+  <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Variable Name:</b> imueclt</span></li>
+  <ul class="ul2">
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Custom Alias:</b> immigration_impact_culture</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Description:</b> And is [country]'s cultural life generally undermined or enriched by people coming to live here from other countries?</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Scale Type:</b> 11-point continuous scale (0 = Cultural life undermined, to 10 = Cultural life enriched).</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Missing / Ghost Values:</b> 77 (Refusal), 88 (Don't know), 99 (No answer).</span></li>
+  </ul>
+  <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Variable Name:</b> imwbcnt</span></li>
+  <ul class="ul2">
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Custom Alias:</b> immigrants_impact_country</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Description:</b> Is [country] made a worse or a better place to live by people coming to live here from other countries?</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Scale Type:</b> 11-point continuous scale (0 = Worse place to live, to 10 = Better place to live).</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Missing / Ghost Values:</b> 77 (Refusal), 88 (Don't know), 99 (No answer).</span></li>
+  </ul>
+</ul>
+<h2 style="margin: 0.0px 0.0px 14.9px 0.0px; font: 20.0px Helvetica; -webkit-text-stroke: #000000"><span class="s1"><b>8. Personal &amp; Demographics</b></span></h2>
+<ul class="ul1">
+  <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Variable Name:</b> ctzcntr</span></li>
+  <ul class="ul2">
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Custom Alias:</b> citizen</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Description:</b> Are you a citizen of [country]?</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Scale Type:</b> Binary categorical (1 = Yes, 2 = No).</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Missing / Ghost Values:</b> 7 (Refusal), 8 (Don't know), 9 (No answer).</span></li>
+  </ul>
+  <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Variable Name:</b> feethngr</span></li>
+  <ul class="ul2">
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Custom Alias:</b> identify_ethnic_majority</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Description:</b> Do you feel you belong to the ethnic majority group in your country?</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Scale Type:</b> Binary categorical (1 = Yes, 2 = No).</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Missing / Ghost Values:</b> 7 (Refusal), 8 (Don't know), 9 (No answer).</span></li>
+  </ul>
+  <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Variable Name:</b> gndr</span></li>
+  <ul class="ul2">
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Custom Alias:</b> gender</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Description:</b> Gender of the respondent.</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Scale Type:</b> Binary nominal (1 = Male, 2 = Female).</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Missing / Ghost Values:</b> 9 (No answer).</span></li>
+  </ul>
+  <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Variable Name:</b> agea</span></li>
+  <ul class="ul2">
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Custom Alias:</b> age</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Description:</b> Calculated age of respondent based on year of birth.</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Scale Type:</b> Continuous numeric.</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Protected Status:</b> <i>Excluded from global 1-digit or 2-digit replacement sweeps to preserve valid numeric responses.</i></span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Missing / Ghost Values:</b> 999 (Not available).</span></li>
+  </ul>
+</ul>
+<h2 style="margin: 0.0px 0.0px 14.9px 0.0px; font: 20.0px Helvetica; -webkit-text-stroke: #000000"><span class="s1"><b>9. Values Block</b></span></h2>
+<ul class="ul1">
+  <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Variable Name:</b> atchctr</span></li>
+  <ul class="ul2">
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Custom Alias:</b> country_attachment</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Description:</b> How emotionally attached do you feel to [country]?</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Scale Type:</b> 11-point continuous scale (0 = Not at all attached, to 10 = Extremely attached).</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Missing / Ghost Values:</b> 77 (Refusal), 88 (Don't know), 99 (No answer).</span></li>
+  </ul>
+  <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Variable Name:</b> atcherp</span></li>
+  <ul class="ul2">
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Custom Alias:</b> eur_attachment</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Description:</b> How emotionally attached do you feel to Europe?</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Scale Type:</b> 11-point continuous scale (0 = Not at all attached, to 10 = Extremely attached).</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Missing / Ghost Values:</b> 77 (Refusal), 88 (Don't know), 99 (No answer).</span></li>
+  </ul>
+  <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Variable Name:</b> rlgdgr</span></li>
+  <ul class="ul2">
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Custom Alias:</b> how_religious</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Description:</b> Regardless of whether you belong to a particular religion, how religious would you say you are?</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Scale Type:</b> 11-point continuous scale (0 = Not at all religious, to 10 = Extremely religious).</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Missing / Ghost Values:</b> 77 (Refusal), 88 (Don't know), 99 (No answer).</span></li>
+  </ul>
+  <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Variable Name:</b> ipeqopta</span></li>
+  <ul class="ul2">
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Custom Alias:</b> imp_treat_ppl_equally</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Description:</b> Human Values Scale: "She/He thinks it is important that every person in the world should be treated equally and have equal opportunities."</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Scale Type:</b> 6-point inverted ordinal scale (1 = Very much like me, down to 6 = Not like me at all).</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Missing / Ghost Values:</b> 77 (Refusal), 88 (Don't know), 99 (No answer).</span></li>
+  </ul>
+  <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Variable Name:</b> ipudrsta</span></li>
+  <ul class="ul2">
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Custom Alias:</b> imp_understand_diff_ppl</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Description:</b> Human Values Scale: "It is important to her/him to listen to people who are different from her/him. Even when she/he disagrees with them, she/he still wants to understand them."</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Scale Type:</b> 6-point inverted ordinal scale (1 = Very much like me, down to 6 = Not like me at all).</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Missing / Ghost Values:</b> 77 (Refusal), 88 (Don't know), 99 (No answer).</span></li>
+  </ul>
+  <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Variable Name:</b> ipstrgva</span></li>
+  <ul class="ul2">
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Custom Alias:</b> imp_govt_strength</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Description:</b> Human Values Scale: "She/He believes that the state should be strong and ensure its safety. The state must protect itself against all threats."</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Scale Type:</b> 6-point inverted ordinal scale (1 = Very much like me, down to 6 = Not like me at all).</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Missing / Ghost Values:</b> 77 (Refusal), 88 (Don't know), 99 (No answer).</span></li>
+  </ul>
+</ul>
+<h2 style="margin: 0.0px 0.0px 14.9px 0.0px; font: 20.0px Helvetica; -webkit-text-stroke: #000000"><span class="s1"><b>10. Employment &amp; Income Vulnerability</b></span></h2>
+<ul class="ul1">
+  <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Variable Name:</b> uemp12m</span></li>
+  <ul class="ul2">
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Custom Alias:</b> unemp_over_12_mos_ever</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Description:</b> Have you ever been unemployed and actively looking for work for a period of more than 12 months?</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Scale Type:</b> Binary categorical (1 = Yes, 2 = No).</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Missing / Ghost Values:</b> 7 (Refusal), 8 (Don't know), 9 (No answer).</span></li>
+  </ul>
+  <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Variable Name:</b> uemp5yr</span></li>
+  <ul class="ul2">
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Custom Alias:</b> unemp_last_5_years</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Description:</b> Have you been unemployed and actively looking for work for any period within the last 5 years?</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Scale Type:</b> Binary categorical (1 = Yes, 2 = No).</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Missing / Ghost Values:</b> 7 (Refusal), 8 (Don't know), 9 (No answer).</span></li>
+  </ul>
+  <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Variable Name:</b> hinctnta</span></li>
+  <ul class="ul2">
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Custom Alias:</b> hh_income_decile</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Description:</b> Household total net income cross-national decile grouping. Re-coded nationally from low (1) to high (10) household brackets.</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Scale Type:</b> 10-point ordinal decile rank.</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Missing / Ghost Values:</b> 77 (Refusal), 88 (Don't know), 99 (No answer).</span></li>
+  </ul>
+  <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Variable Name:</b> hincfel</span></li>
+  <ul class="ul2">
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Custom Alias:</b> hh_income_comfort</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Description:</b> Which of the descriptions on this card comes closest to how you feel about your household’s total income nowadays?</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Scale Type:</b> 4-point subjective ordinal scale (1 = Living comfortably on present income, 2 = Coping on present income, 3 = Finding it difficult on present income, 4 = Finding it very difficult on present income).</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Missing / Ghost Values:</b> 7 (Refusal), 8 (Don't know), 9 (No answer).</span></li>
+  </ul>
+</ul>
+<h2 style="margin: 0.0px 0.0px 14.9px 0.0px; font: 20.0px Helvetica; -webkit-text-stroke: #000000"><span class="s1"><b>11. Socioeconomic Intergenerational Mobility</b></span></h2>
+<ul class="ul1">
+  <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Variable Name:</b> eisced</span></li>
+  <ul class="ul2">
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Custom Alias:</b> educ_attainment</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Description:</b> Highest level of education attained by the respondent mapped to the European Harmonised standard (ISCED framework).</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Scale Type:</b> 7-point Harmonized ordinal scale (1 = Less than lower secondary, up to 7 = Higher tertiary).</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Missing / Ghost Values:</b> 55 (Other), 77 (Refusal), 88 (Don't know), 99 (No answer).</span></li>
+  </ul>
+  <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Variable Name:</b> eiscedf</span></li>
+  <ul class="ul2">
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Custom Alias:</b> educ_attainment_father</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Description:</b> Father's highest level of education attained, harmonized to the ISCED framework.</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Scale Type:</b> 7-point Harmonized ordinal scale.</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Missing / Ghost Values:</b> 55 (Other), 77 (Refusal), 88 (Don't know), 99 (No answer).</span></li>
+  </ul>
+  <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Variable Name:</b> eiscedm</span></li>
+  <ul class="ul2">
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Custom Alias:</b> educ_attainment_mother</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Description:</b> Mother's highest level of education attained, harmonized to the ISCED framework.</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Scale Type:</b> 7-point Harmonized ordinal scale.</span></li>
+    <li class="li3"><span class="s2"><b></b></span><span class="s1"><b>Missing / Ghost Values:</b> 55 (Other), 77 (Refusal), 88 (Don't know), 99 (No answer).</span></li>
+  </ul>
+</ul>
+</body>
+</html>
