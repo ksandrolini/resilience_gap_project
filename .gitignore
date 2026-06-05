@@ -5,7 +5,18 @@ logs/
 target/
 .env
 modules/
-ESS_raw_data/
+
+# Data exclusions
+data/1_raw/*
+data/2_interim/*
+!data/**/.gitkeep
 
 # System files
 .DS_Store
+.vscode/
+.vscode/*.json
+
+# Python/Notebook exclusions
+.ipynb_checkpoints/
+__pycache__/
+*.pyc
