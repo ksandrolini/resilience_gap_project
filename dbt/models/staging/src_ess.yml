@@ -10,3 +10,5 @@ sources:
         description: "NUTS 1 Region Statistics"
       - name: region_lookup_lean
         description: "Region lookup keys for merging across different NUTS granularities"
+      - name: the_populist
+        description: "PopuList classification of European political parties"
