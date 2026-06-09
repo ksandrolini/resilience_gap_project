@@ -67,7 +67,10 @@ SELECT
 
         -- Safely falls back to NULL for non-voters, blanks, refusals, and other-country rows
         else null
-    end as rw_populist_vote
+    end as rw_populist_vote,
+    
+    -- 5. Intergenerational mobility (education as proxy)
+    r.educ_attainment - greatest(r.educ_attainment_mother, r.educ_attainment_father) as intergen_educational_mobility
 
 FROM respondents r
 -- Step 1: Find out where the respondent lives based on their survey code

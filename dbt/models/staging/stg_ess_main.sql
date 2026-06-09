@@ -58,10 +58,10 @@ select
     case when hincfel in (7, 8, 9) then null else hincfel end as hh_income_comfort,
     case when gndr = 9 then null else gndr end as gender,
 
-    -- 5. Education Scales (55 is "Other", 77, 88, 99 are missing)
-    case when eisced in (55, 77, 88, 99) then null else eisced end as educ_attainment,
-    case when eiscedf in (55, 77, 88, 99) then null else eiscedf end as educ_attainment_father,
-    case when eiscedm in (55, 77, 88, 99) then null else eiscedm end as educ_attainment_mother,
+    -- 5. Education Scales (0 'impossible to standardize', 55 is "Other", 77, 88, 99 are missing)
+    case when eisced in (0, 55, 77, 88, 99) then null else eisced end as educ_attainment,
+    case when eiscedf in (0, 55, 77, 88, 99) then null else eiscedf end as educ_attainment_father,
+    case when eiscedm in (0, 55, 77, 88, 99) then null else eiscedm end as educ_attainment_mother,
 
  -- 6. Voting Blocks (66 is Country Omission, 77, 88, 99 are missing)
     -- France
@@ -112,7 +112,7 @@ select
         -- FRANCE (prtvtffr)
         ---------------------------------------------------------
         when cntry = 'FR' and nullif(trim(prtvtffr::varchar), '')::int  = 66 then 'Ineligible / Not Applicable'
-        when cntry = 'FR' and nullif(trim(prtvtffr::varchar), '')::int  = 77 then 'Explicit Refusal'
+        when cntry = 'FR' and nullif(trim(prtvtffr::varchar), '')::int  = 77 then 'Refuse to Say'
         when cntry = 'FR' and nullif(trim(prtvtffr::varchar), '')::int  = 88 then 'Don''t Know'
         when cntry = 'FR' and nullif(trim(prtvtffr::varchar), '')::int  = 99 then 'No Answer / System Missing'
         when cntry = 'FR' and nullif(trim(prtvtffr::varchar), '')::int  = 10 then 'Blank Ballot'
@@ -123,7 +123,7 @@ select
         -- GERMANY (prtvgde2)
         ---------------------------------------------------------
         when cntry = 'DE' and nullif(trim(prtvgde2::varchar), '')::int  = 66 then 'Ineligible / Not Applicable'
-        when cntry = 'DE' and nullif(trim(prtvgde2::varchar), '')::int  = 77 then 'Explicit Refusal'
+        when cntry = 'DE' and nullif(trim(prtvgde2::varchar), '')::int  = 77 then 'Refuse to Say'
         when cntry = 'DE' and nullif(trim(prtvgde2::varchar), '')::int  = 88 then 'Don''t Know'
         when cntry = 'DE' and nullif(trim(prtvgde2::varchar), '')::int  = 99 then 'No Answer / System Missing'
         when cntry = 'DE' and nullif(trim(prtvgde2::varchar), '')::int  is not null then 'Valid Party Vote'
@@ -132,7 +132,7 @@ select
         -- GREECE (prtvtegr)
         ---------------------------------------------------------
         when cntry = 'GR' and nullif(trim(prtvtegr::varchar), '')::int  = 66 then 'Ineligible / Not Applicable'
-        when cntry = 'GR' and nullif(trim(prtvtegr::varchar), '')::int  = 77 then 'Explicit Refusal'
+        when cntry = 'GR' and nullif(trim(prtvtegr::varchar), '')::int  = 77 then 'Refuse to Say'
         when cntry = 'GR' and nullif(trim(prtvtegr::varchar), '')::int  = 88 then 'Don''t Know'
         when cntry = 'GR' and nullif(trim(prtvtegr::varchar), '')::int  = 99 then 'No Answer / System Missing'
         when cntry = 'GR' and nullif(trim(prtvtegr::varchar), '')::int  = 33 then 'Blank Ballot'
@@ -143,7 +143,7 @@ select
         -- ITALY (prtvteit)
         ---------------------------------------------------------
         when cntry = 'IT' and nullif(trim(prtvteit::varchar), '')::int  = 66 then 'Ineligible / Not Applicable'
-        when cntry = 'IT' and nullif(trim(prtvteit::varchar), '')::int  = 77 then 'Explicit Refusal'
+        when cntry = 'IT' and nullif(trim(prtvteit::varchar), '')::int  = 77 then 'Refuse to Say'
         when cntry = 'IT' and nullif(trim(prtvteit::varchar), '')::int  = 88 then 'Don''t Know'
         when cntry = 'IT' and nullif(trim(prtvteit::varchar), '')::int  = 99 then 'No Answer / System Missing'
         when cntry = 'IT' and nullif(trim(prtvteit::varchar), '')::int  is not null then 'Valid Party Vote'
@@ -152,7 +152,7 @@ select
         -- SPAIN (prtvtges)
         ---------------------------------------------------------
         when cntry = 'ES' and nullif(trim(prtvtges::varchar), '')::int  = 66 then 'Ineligible / Not Applicable'
-        when cntry = 'ES' and nullif(trim(prtvtges::varchar), '')::int  = 77 then 'Explicit Refusal'
+        when cntry = 'ES' and nullif(trim(prtvtges::varchar), '')::int  = 77 then 'Refuse to Say'
         when cntry = 'ES' and nullif(trim(prtvtges::varchar), '')::int  = 88 then 'Don''t Know'
         when cntry = 'ES' and nullif(trim(prtvtges::varchar), '')::int  = 99 then 'No Answer / System Missing'
         when cntry = 'ES' and nullif(trim(prtvtges::varchar), '')::int  = 51 then 'Blank Ballot'
@@ -163,7 +163,7 @@ select
         -- SWEDEN (prtvtese)
         ---------------------------------------------------------
         when cntry = 'SE' and nullif(trim(prtvtese::varchar), '')::int  = 66 then 'Ineligible / Not Applicable'
-        when cntry = 'SE' and nullif(trim(prtvtese::varchar), '')::int  = 77 then 'Explicit Refusal'
+        when cntry = 'SE' and nullif(trim(prtvtese::varchar), '')::int  = 77 then 'Refuse to Say'
         when cntry = 'SE' and nullif(trim(prtvtese::varchar), '')::int  = 88 then 'Don''t Know'
         when cntry = 'SE' and nullif(trim(prtvtese::varchar), '')::int  = 99 then 'No Answer / System Missing'
         when cntry = 'SE' and nullif(trim(prtvtese::varchar), '')::int  is not null then 'Valid Party Vote'
@@ -172,7 +172,7 @@ select
         -- POLAND (prtvtfpl)
         ---------------------------------------------------------
         when cntry = 'PL' and nullif(trim(prtvtfpl::varchar), '')::int  = 66 then 'Ineligible / Not Applicable'
-        when cntry = 'PL' and nullif(trim(prtvtfpl::varchar), '')::int  = 77 then 'Explicit Refusal'
+        when cntry = 'PL' and nullif(trim(prtvtfpl::varchar), '')::int  = 77 then 'Refuse to Say'
         when cntry = 'PL' and nullif(trim(prtvtfpl::varchar), '')::int  = 88 then 'Don''t Know'
         when cntry = 'PL' and nullif(trim(prtvtfpl::varchar), '')::int  = 99 then 'No Answer / System Missing'
         when cntry = 'PL' and nullif(trim(prtvtfpl::varchar), '')::int  is not null then 'Valid Party Vote'
