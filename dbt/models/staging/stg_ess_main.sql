@@ -56,8 +56,12 @@ select
     case when uemp12m in (7, 8, 9) then null else uemp12m end as unemp_over_12_mos_ever,
     case when uemp5yr in (7, 8, 9) then null else uemp5yr end as unemp_last_5_years,
     case when hincfel in (7, 8, 9) then null else hincfel end as hh_income_comfort,
-    case when gndr = 9 then null else gndr end as gender,
-
+	case
+	    when gndr = 1 then 0
+	    when gndr = 2 then 1
+	    else null
+	end as gender, -- recode to 0/1 binary
+	
     -- 5. Education Scales (0 'impossible to standardize', 55 is "Other", 77, 88, 99 are missing)
     case when eisced in (0, 55, 77, 88, 99) then null else eisced end as educ_attainment,
     case when eiscedf in (0, 55, 77, 88, 99) then null else eiscedf end as educ_attainment_father,

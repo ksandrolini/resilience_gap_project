@@ -13,7 +13,8 @@ renamed_and_filtered as (
         n1_pode_2017 as nuts1_pop_density_2017,
         n1_growrt_2017 as nuts1_pop_growth_rate_2017,
         
-        n1_cnmigratrt_2020 as nuts1_net_migration_2020, -- one exception, data not available for all countries in 2017, need to use 2020
+        -- one exception, data not available for all countries in 2017, need to use 2020
+        n1_cnmigratrt_2020 as nuts1_net_migration_2020,
 
         -- 2022 macro indicators
         n1_gdp_eurhab_2022 as nuts1_gdp_euro_2022,
