@@ -23,16 +23,13 @@ SELECT
     r.model_analysis_wt,
 
     -- 2. MACRO STRUCTURAL CONTEXT (ABSOLUTE LEVELS)
-    m.nuts1_gdp_euro_2022,
-    m.nuts1_gdp_pct_eu_avg_2022,
+    m.nuts1_gdp_percap_euro_2022,
     m.nuts1_unemployment_rate_pct_2022,
     m.nuts1_net_migration_2022,
-    m.nuts1_pop_density_2022,
-    m.nuts1_pop_growth_rate_2022,
 
     -- 3. MACRO SHOCKS (DELTAS)
-    (m.nuts1_gdp_pct_eu_avg_2022 - m.nuts1_gdp_pct_eu_avg_2017)
-        AS delta_nuts1_gdp_pct_eu_avg_5yr,
+    (m.nuts1_gdp_percap_euro_2022 - m.nuts1_gdp_percap_euro_2017)
+        AS delta_nuts1_gdp_percap_euro_5yr,
 
     (m.nuts1_unemployment_rate_pct_2022 - m.nuts1_unemployment_rate_pct_2017)
         AS delta_nuts1_unemployment_rate_5yr,
@@ -40,24 +37,14 @@ SELECT
     (m.nuts1_net_migration_2022 - m.nuts1_net_migration_2020)
         AS delta_nuts1_net_migration_2yr,
 
-    (m.nuts1_pop_growth_rate_2022 - m.nuts1_pop_growth_rate_2017)
-        AS delta_nuts1_pop_growth_rate_5yr,
 
     -- 4. INDIVIDUAL SOCIOECONOMIC CONTROLS
     r.age,
     r.gender,
-    r.citizen,
-    r.identify_ethnic_majority,
     r.educ_attainment,
     r.hh_income_comfort,
     r.unemp_last_5_years,
-    r.how_religious,
 
-    -- 5. POLITICAL MECHANISMS
-    r.personal_say_govt,
-    r.eu_role,
-    r.country_attachment,
-    r.eur_attachment,
 
 	-- TRUST COMPONENTS (To be collapsed into index in Python)
     r.trstprl,
@@ -67,11 +54,9 @@ SELECT
 
     -- 6. CULTURAL ATTITUDES
     r.immigrants_impact_country,
-    r.govt_role_income_inequality,
     r.left_right_alignment,
 
     -- 7. VALUES / DIAGNOSTICS
-    r.sat_life,
     r.voting_behavior_manifest,
 
     -- 8. DERIVED MOBILITY
@@ -89,7 +74,7 @@ SELECT
         WHEN r.country_code = 'GR' AND r.vote_gr IN (5,6,7,12) THEN 1
         WHEN r.country_code = 'GR' AND r.vote_gr IS NOT NULL THEN 0
 
-        WHEN r.country_code = 'IT' AND r.vote_it IN (1,4) THEN 1
+        WHEN r.country_code = 'IT' AND r.vote_it IN (1,4,9) THEN 1
         WHEN r.country_code = 'IT' AND r.vote_it IS NOT NULL THEN 0
 
         WHEN r.country_code = 'PL' AND r.vote_pl IN (2,5) THEN 1

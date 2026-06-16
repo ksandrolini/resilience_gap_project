@@ -10,9 +10,7 @@ select
     cntry as country_code,
     regunit AS nuts_level, 
     region as nuts_region,
-    
-    -- Winsorization of model weight
-    case when anweight > 5.0 then 5.0 else anweight end as model_analysis_wt,
+    pspwght as model_analysis_wt,
     
     -- Need to recast 'missing' values as in the ESS they are numeric (e.g. 77, 7777, 9999, etc.). These correspond to different types of missing: refused, don't know, NA, missing.
     -- For models and clustering we will treat as NA
@@ -67,10 +65,10 @@ select
     case when eiscedf in (0, 55, 77, 88, 99) then null else eiscedf end as educ_attainment_father,
     case when eiscedm in (0, 55, 77, 88, 99) then null else eiscedm end as educ_attainment_mother,
 
- -- 6. Voting Blocks (66 is Country Omission, 77, 88, 99 are missing)
+ -- 6. Voting Blocks (66 is NA, 77, 88, 99 are missing)
     -- France
     case 
-        when nullif(trim(prtvtffr::varchar), '')::int in (10, 11, 66, 77, 88, 99) then null 
+        when nullif(trim(prtvtffr::varchar), '')::int in (66, 77, 88, 99) then null 
         else nullif(trim(prtvtffr::varchar), '')::int 
     end as vote_fr,
 
@@ -82,7 +80,7 @@ select
 
     -- Greece
     case 
-        when nullif(trim(prtvtegr::varchar), '')::int in (32, 33, 66, 77, 88, 99) then null 
+        when nullif(trim(prtvtegr::varchar), '')::int in (66, 77, 88, 99) then null 
         else nullif(trim(prtvtegr::varchar), '')::int 
     end as vote_gr,
 
@@ -100,7 +98,7 @@ select
 
     -- Spain
     case 
-        when nullif(trim(prtvtges::varchar), '')::int in (51, 52, 66, 77, 88, 99) then null 
+        when nullif(trim(prtvtges::varchar), '')::int in (66, 77, 88, 99) then null 
         else nullif(trim(prtvtges::varchar), '')::int 
     end as vote_es,
 
