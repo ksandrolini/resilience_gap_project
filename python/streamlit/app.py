@@ -56,13 +56,34 @@ geo_viewport_config = dict(
 # =====================================================================
 # HEADER NARRATIVE
 # =====================================================================
-st.title("🇪🇺 The Multilevel Bridge")
+st.title("🇪🇺 What Drives Political Anger? Regional Vulnerability and Rightwing Populist Voting in Europe.")
 st.markdown("### Sub-National Economic Environments, Institutional Trust, and Populist Backlash")
 st.markdown(
-    "This dashboard functions as an interactive thesis. By parsing macro-economic environments "
-    "independently of individual voter psychology, we explore how spatial structural inequality "
-    "transforms into anti-system political mobilization across European regions."
+    "This project investigates the structural and attitudinal determinants of right-wing populist "
+    "voting across seven European democracies. Drawing on European Social Survey Round 11 data, "
+    "it tests competing theoretical accounts — economic shock, cultural displacement, and "
+    "institutional distrust — against individual-level and sub-national regional evidence. "
+    "Macro-structural conditions are modelled independently of individual voter psychology, "
+    "allowing the analysis to isolate where economic environments end and attitudinal factors begin."
 )
+
+st.markdown("---")
+st.header("The Data Pipeline")
+st.markdown("I selected 7 countries intended to be representative of a variety of European regime types: "
+            "Germany, France, Italy, Spain, Poland, Sweden, and Greece. These capture different economic " \
+            "models, welfare traditions, and political histories. I use individual survey responses from the ESS" \
+            "Round 11, amounting to roughly 14,000 respondents. I segment the countries by NUTS 1 statistical " \
+            "regions. For each voter, I map their voting choice to a binary rightwing populist or not scheme, using " \
+            "the PopuList database and further online research."
+            
+            "I cleaned and transformed the data with dbt, making explicit theoretical decisions at each step: " \
+            "which variables to retain, how to construct composite indices, how to handle survey weights. Then, I" \
+            "merged individual responses with macro-level conditions (GDP per capita, net migration rate) to see " \
+            "whether regional conditions explain voting behavior better than individual attitudes."
+            
+            "The final outputs are a series of visualizations, a GLM model, and k-means clustering to develop" \
+            "a regional typology for the countries chosen.")
+
 st.markdown("---")
 
 # =====================================================================
@@ -276,26 +297,40 @@ with col3:
 
 with col4:
     st.markdown("### Voting Behavior Composition")
+# Collapse minor categories into a single residual
+    keep_categories = ["Valid Party Vote", "Ineligible / Not Applicable", "Refuse to Say"]
 
+    df_individuals["voting_behavior_display"] = df_individuals["voting_behavior_manifest"].apply(
+        lambda x: x if x in keep_categories else "Other / Missing"
+    )
     # 1. Generate the cross-tabulation
     df_cross = pd.crosstab(
         df_individuals["country_code"],
-        df_individuals["voting_behavior_manifest"],
+        df_individuals["voting_behavior_display"],
         normalize="index"
     ) * 100
 
     # 2. Sort countries
     df_cross = df_cross.sort_values(by="Valid Party Vote", ascending=True)
-
+    color_map = {
+    "Valid Party Vote": "#4a90d9",
+    "Ineligible / Not Applicable": "#b0b0b0",
+    "Refuse to Say": "#d4a847",
+    "Other / Missing": "#e0e0e0"
+    }
+    
     # 3. Create the interactive stacked bar chart
     fig_stacked = px.bar(
         df_cross,
         orientation="h",
         barmode="stack",
-        color_discrete_sequence=px.colors.sequential.Viridis_r,
-        labels={"value": "Percentage (%)", "country_code": "Country", "variable": "Voting Behavior"}
+        color_discrete_map=color_map,
+        labels={
+            "value": "Percentage (%)",
+            "country_code": "Country",
+            "variable": "Voting Behavior"
+        }
     )
-
     # 4. Refine text appearance and labeling
     fig_stacked.update_traces(
         texttemplate="%{value:.1f}%", # Adds the "%" sign and formats the number
@@ -325,7 +360,7 @@ with col4:
 # SECTION 3: THE ENGINE (GLM COEFFICIENTS PANEL)
 # =====================================================================
 
-st.header("3. Statistical Micro-Foundations (Individual-Level GLM)")
+st.header("3. Individual-Level GLM")
 st.markdown(
     "To understand *why* geography behaves this way, we analyze individual mechanics. This statistical panel "
     "displays your pre-computed clustered log-odds regression outputs, proving that subjective trust deficits "
@@ -358,46 +393,26 @@ with m_col3:
     st.metric(label="Gender (Female β)", value=f"{get_coef('gender'):.2f}")
 with m_col4:
     st.metric(label="Immigrant Impact (β)", value=f"{get_coef('immigrants_impact_country'):.2f}")
-
-# 3. Full Regression Table
-with open("logit_summary.html", "r") as f:
-    summary_html = f.read()
-
-custom_html = f"""
-<style>
-body {{
-    color: white;
-    background-color: transparent;
-    font-size: 16px;
-}}
-
-table {{
-    width: 100%;
-    color: white;
-    border-collapse: collapse;
-}}
-
-th, td {{
-    color: white;
-    padding: 6px;
-}}
-
-</style>
-
-{summary_html}
-"""
-
-st.components.v1.html(
-    custom_html,
-    height=700,
-    scrolling=True
+st.caption(
+    "Beta coefficients from a binomial logistic regression. "
+    "Negative values indicate lower probability of populist voting. "
+    "Larger absolute values indicate stronger associations."
 )
-st.markdown("---")
+# 3. Full Regression Table
+display_df = reg_summary.copy()
+
+display_df["coef"] = display_df["coef"].map("{:.3f}".format)
+display_df["stderr"] = display_df["stderr"].map("{:.3f}".format)
+display_df["pvalue"] = display_df["pvalue"].apply(
+    lambda p: "<0.001" if p < 0.001 else f"{p:.3f}"
+)
+
+st.table(display_df)
 
 # =====================================================================
 # SECTION 4: THE GRAND FINALE (THE 5 STRUCTURAL ARCHETYPES)
 # =====================================================================
-st.header("4. Deep Structure: The 5 Regional Typology Archetypes")
+st.header("4. Regional Structural Typology")
 
 st.markdown(
     "**The Resolution:** Structural archetypes derived from unsupervised clustering "
