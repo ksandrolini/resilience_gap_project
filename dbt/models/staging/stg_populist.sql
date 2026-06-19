@@ -4,4 +4,4 @@ with raw_source as (
 )
 select party_name, country_name, party_name_english, party_name_short, populist, farright
 from raw_source
-where country_name in ('France', 'Germany', 'Greece', 'Italy', 'Poland', 'Spain', 'Sweden') AND farright = 1 AND populist = 1
+where country_name in ('Bulgaria', 'Finland', 'France', 'Germany', 'Greece', 'Italy', 'Poland', 'Portugal', 'Spain', 'Sweden') AND farright = 1

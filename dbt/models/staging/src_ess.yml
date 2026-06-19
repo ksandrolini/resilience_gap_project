@@ -8,6 +8,8 @@ sources:
         description: "Main individual level survey data"
       - name: ess_multilevel_nuts1
         description: "NUTS 1 Region Statistics"
+      - name: ess_multilevel_nuts2
+        description: "NUTS 2 Region Statistics"
       - name: region_lookup_lean
         description: "Region lookup keys for merging across different NUTS granularities"
       - name: the_populist

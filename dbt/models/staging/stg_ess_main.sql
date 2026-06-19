@@ -66,13 +66,26 @@ select
     case when eiscedm in (0, 55, 77, 88, 99) then null else eiscedm end as educ_attainment_mother,
 
  -- 6. Voting Blocks (66 is NA, 77, 88, 99 are missing)
+    
+    -- Bulgaria
+    case 
+        when nullif(trim(prtvtfbg::varchar), '')::int in (10, 66, 77, 88, 99) then null 
+        else nullif(trim(prtvtfbg::varchar), '')::int 
+    end as vote_bg,
+    
     -- France
     case 
-        when nullif(trim(prtvtffr::varchar), '')::int in (66, 77, 88, 99) then null 
+        when nullif(trim(prtvtffr::varchar), '')::int in (10, 11, 66, 77, 88, 99) then null 
         else nullif(trim(prtvtffr::varchar), '')::int 
     end as vote_fr,
+    
+    -- Finland
+     case 
+        when nullif(trim(prtvtffi::varchar), '')::int in (66, 77, 88, 99) then null 
+        else nullif(trim(prtvtffi::varchar), '')::int 
+    end as vote_fi,   
 
-    -- Germany (Party List)
+    -- Germany
     case 
         when nullif(trim(prtvgde2::varchar), '')::int in (66, 77, 88, 99) then null 
         else nullif(trim(prtvgde2::varchar), '')::int 
@@ -80,7 +93,7 @@ select
 
     -- Greece
     case 
-        when nullif(trim(prtvtegr::varchar), '')::int in (66, 77, 88, 99) then null 
+        when nullif(trim(prtvtegr::varchar), '')::int in (32, 33, 66, 77, 88, 99) then null 
         else nullif(trim(prtvtegr::varchar), '')::int 
     end as vote_gr,
 
@@ -96,9 +109,16 @@ select
         else nullif(trim(prtvtfpl::varchar), '')::int 
     end as vote_pl,
 
+     -- Portugal
+     case 
+        when nullif(trim(prtvtept::varchar), '')::int in (22, 66, 77, 88, 99) then null 
+        else nullif(trim(prtvtept::varchar), '')::int 
+    end as vote_pt,   
+  
+    
     -- Spain
     case 
-        when nullif(trim(prtvtges::varchar), '')::int in (66, 77, 88, 99) then null 
+        when nullif(trim(prtvtges::varchar), '')::int in (51, 52, 66, 77, 88, 99) then null 
         else nullif(trim(prtvtges::varchar), '')::int 
     end as vote_es,
 
@@ -109,7 +129,18 @@ select
     end as vote_se,
  
  	-- CATEGORICAL BEHAVIORAL VOTING FLAG
-    case
+    CASE
+	    
+	    ---------------------------------------------------------
+        -- BULGARIA (prtvtebg)
+        ---------------------------------------------------------
+	    when cntry = 'BG' and nullif(trim(prtvtfbg::varchar), '')::int  = 10 then 'Blank Ballot'
+        when cntry = 'BG' and nullif(trim(prtvtfbg::varchar), '')::int  = 66 then 'Ineligible / Not Applicable'
+        when cntry = 'BG' and nullif(trim(prtvtfbg::varchar), '')::int  = 77 then 'Refuse to Say'
+        when cntry = 'BG' and nullif(trim(prtvtfbg::varchar), '')::int  = 88 then 'Don''t Know'
+        when cntry = 'BG' and nullif(trim(prtvtfbg::varchar), '')::int  = 99 then 'No Answer / System Missing'
+        when cntry = 'BG' and nullif(trim(prtvtfbg::varchar), '')::int  is not null then 'Valid Party Vote'
+        
         ---------------------------------------------------------
         -- FRANCE (prtvtffr)
         ---------------------------------------------------------
@@ -121,6 +152,15 @@ select
         when cntry = 'FR' and nullif(trim(prtvtffr::varchar), '')::int  = 11 then 'Invalid Ballot'
         when cntry = 'FR' and nullif(trim(prtvtffr::varchar), '')::int  is not null then 'Valid Party Vote'
 
+        ---------------------------------------------------------
+        -- FINLAND (prtvtffi)
+        ---------------------------------------------------------
+        when cntry = 'FI' and nullif(trim(prtvtffi::varchar), '')::int  = 66 then 'Ineligible / Not Applicable'
+        when cntry = 'FI' and nullif(trim(prtvtffi::varchar), '')::int  = 77 then 'Refuse to Say'
+        when cntry = 'FI' and nullif(trim(prtvtffi::varchar), '')::int  = 88 then 'Don''t Know'
+        when cntry = 'FI' and nullif(trim(prtvtffi::varchar), '')::int  = 99 then 'No Answer / System Missing'
+        when cntry = 'FI' and nullif(trim(prtvtffi::varchar), '')::int  is not null then 'Valid Party Vote'
+        
         ---------------------------------------------------------
         -- GERMANY (prtvgde2)
         ---------------------------------------------------------
@@ -178,11 +218,21 @@ select
         when cntry = 'PL' and nullif(trim(prtvtfpl::varchar), '')::int  = 88 then 'Don''t Know'
         when cntry = 'PL' and nullif(trim(prtvtfpl::varchar), '')::int  = 99 then 'No Answer / System Missing'
         when cntry = 'PL' and nullif(trim(prtvtfpl::varchar), '')::int  is not null then 'Valid Party Vote'
+        
+        ---------------------------------------------------------
+        -- PORTUGAL (prtvtept)
+        ---------------------------------------------------------
+        when cntry = 'PT' and nullif(trim(prtvtept::varchar), '')::int  = 66 then 'Ineligible / Not Applicable'
+        when cntry = 'PT' and nullif(trim(prtvtept::varchar), '')::int  = 77 then 'Refuse to Say'
+        when cntry = 'PT' and nullif(trim(prtvtept::varchar), '')::int  = 88 then 'Don''t Know'
+        when cntry = 'PT' and nullif(trim(prtvtept::varchar), '')::int  = 99 then 'No Answer / System Missing'
+        when cntry = 'PT' and nullif(trim(prtvtept::varchar), '')::int  = 22 then 'Blank Ballot'
+        when cntry = 'PT' and nullif(trim(prtvtept::varchar), '')::int  is not null then 'Valid Party Vote'
 
         -- Catch-all for any weird outliers or system gaps
         else 'System Skip / Undefined'
     end as voting_behavior_manifest  
     
 from raw_source
-where idno is not null and cntry in ('DE', 'FR', 'IT', 'PL', 'ES', 'SE', 'GR') and region NOT LIKE '%Z' -- NUTS _Z regions are small 'other' subset for people with special residential status (diplomats, army bases, etc.)
+where idno is not null and cntry in ('BG', 'DE', 'FI', 'FR', 'GR', 'IT', 'PL', 'PT', 'ES', 'SE') and region NOT LIKE '%Z' -- NUTS _Z regions are small 'other' subset for people with special residential status (diplomats, army bases, etc.)
 
