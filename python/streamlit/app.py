@@ -12,12 +12,12 @@ st.markdown(
     """
     <style>
     html, body, p, li {
-        font-size: 20px !important;
+        font-size: 24px !important;
         line-height: 1.6 !important;
     }
-    h3 { font-size: 26px !important; }
-    h2 { font-size: 30px !important; }
-    h1 { font-size: 40px !important; }
+    h3 { font-size: 30px !important; }
+    h2 { font-size: 36px !important; }
+    h1 { font-size: 44px !important; }
     </style>
     """,
     unsafe_allow_html=True
@@ -42,7 +42,7 @@ def load_hierarchical_data():
 
     CLUSTER_LABELS = {
         0: "Economically Deprived Periphery",
-        1: "Established Radical Right Influence",
+        1: "Affluent Established Radical Right Presence",
         2: "High Migration Low Backlash Regions",
         3: "Vulnerable Battlegrounds",
         4: "Alienated and Educated Skeptics",
@@ -88,7 +88,7 @@ nuts1_geojson = load_geojson()
 
 CLUSTER_LABELS = {
     0: "Economically Deprived Periphery",
-    1: "Established Radical Right Influence",
+    1: "Affluent Established Radical Right Presence",
     2: "High Migration Low Backlash Regions",
     3: "Vulnerable Battlegrounds",
     4: "Alienated and Educated Skeptics",
@@ -147,37 +147,31 @@ section = st.sidebar.radio(
 # SECTION: INTRODUCTION
 # =====================================================================
 if section == "Introduction":
-    st.title("What Drives Radical-Right Voting?")
-    st.subheader("Sub-National Economic Environments, Institutional Trust, and Radical Backlash")
+    st.title("What Drives Far-Right Voting?")
+    st.subheader("Attitudes, Economics, or Something Else?")
 
     st.markdown(
         """
-        This project investigates the structural and attitudinal determinants of right-wing populist voting across
-        **10 European democracies.** Drawing on European Social Survey Round 11 data, it tests competing theoretical accounts — economic shock,
-        cultural displacement, and institutional distrust — against individual-level and sub-national regional evidence.
-        Macro-structural conditions are modeled independently of individual voter psychology, allowing the analysis
-        to isolate where economic environments end and attitudinal factors begin.
+        Support for radical-right parties has grown across Europe, but there is still considerable disagreement about why.
 
-        ### Core Analytical Pillars
-        To answer exactly what is driving this shift, the dashboard splits the investigation into three interactive layers:
-        * **The Exploratory Visuals (Macro-Structural):** The actual regional environment — local GDP shifts, trust levels, net migration rates, and right-wing voting at the NUTS-1 level.
-        * **The Mind (Individual-Attitudinal):** Individual voter psychology, evaluating if variables like formal education levels and institutional trust act as buffers to voting propensity.
-        * **The Typology (Macro Structural Archetypes):** A data-driven clustering layout that groups regions sharing similar economic and migration profiles, stripping away state borders to look at shared structural realities.
+        Is it driven by economic hardship? Immigration pressures? Declining trust in political institutions? Or does the answer depend on where people live?
 
-        ### Why Should We Care? 🤌🏽🤌🏽
+        Using European Social Survey data from **10 European countries**, this project compares individual attitudes with regional economic conditions to identify which factors are most closely associated with radical-right voting.
 
-        Support for radical-right parties has grown across much of Europe, but the reasons behind this trend remain heavily debated. Are voters primarily responding to economic pressures, concerns about immigration, declining trust in institutions, or broader regional conditions?
-        Understanding these drivers matters because governments often design policies based on assumptions about what causes political discontent. If those assumptions are wrong, resources may be directed toward the wrong problems.
-        This project examines whether radical-right voting is better explained by individual attitudes, regional economic conditions, or national political contexts.
+        ### What This Project Examines
 
-        When radical-right movements gain major traction, the stakes are high:
-        * **Democratic Erosion:** It frequently leads to the weakening of independent courts, checks and balances, and free media.
-        * **Social Polarization:** It deepens "us versus them" cleavages, making compromise more difficult and putting vulnerable minority communities at greater risk.
-        * **Policy Gridlock:** It can destabilize pan-European cooperation on issues like climate change, economic integration, and collective security.
+        * 🗺️ **Regional Context:** GDP growth, unemployment, migration, and voting patterns across European regions.
+        * 👤 **Individual Attitudes:** Trust in institutions, views on immigration, education, age, and gender.
+        * 🔍 **Regional Typologies:** A data-driven clustering approach that groups regions with similar economic and demographic characteristics.
 
-        Understanding far right voting is a study in systemic risk: democratic erosion, social polarization, and policy gridlock on important issues.
+        ### Why Does It Matter? 🤌🏽🤌🏽🤌🏽
+
+        Governments often respond to political discontent based on assumptions about what is causing it. If those assumptions are wrong, policies may target the wrong problems.
+
+        This project tests competing explanations to better understand what actually drives radical-right voting across Europe.
         """
     )
+
 
 # =====================================================================
 # SECTION: FOUNDATIONS, COUNTRIES & PIPELINE
@@ -187,23 +181,25 @@ elif section == "Theory & Approach":
     st.markdown(
         "Before diving into the data, we ground the analysis in the political sociology "
         "literature. What actually drives right-wing voting behavior? Scholars are divided into "
-        "three primary camps. I use **European Social Survey (ESS Round 11)** data across multiple countries "
-        "to empirically test which explanation holds the most predictive weight."
+        "two primary camps."
     )
 
-    tab1, tab2, tab3 = st.tabs([
-        "1. Globalization 'Losers' (Kriesi)",
-        "2. Cultural Backlash (Inglehart & Norris)",
-        "3. Macro-Economic Shocks (Papaioannou & Guriev)"
+    tab1, tab2 = st.tabs([
+        "1. Economic & Structural Accounts (Kriesi; Papaioannou & Guriev)",
+        "2. Cultural Backlash (Inglehart & Norris)"
     ])
 
     with tab1:
-        st.subheader("The 'Winners vs. Losers' of Globalization")
-        st.markdown("**Core Argument:** Globalization and open borders have structurally divided society.")
+        st.subheader("Economic Structure and Shock: Two Versions of the Same Mechanism")
+        st.markdown("**Core Argument:** Material conditions — whether a slow-moving structural divide or a sudden shock — drive political realignment.")
         st.info(
-            "Modernization creates structural 'winners' (highly educated, mobile, urban citizens) "
-            "and 'losers' (less-educated, tradition-bound, localized workers). Right-wing populists win by "
-            "successfully mobilizing localized clusters who feel both economically and culturally left behind by global integration."
+            "**Kriesi's globalization 'losers' thesis** argues that modernization creates structural 'winners' "
+            "(highly educated, mobile, urban citizens) and 'losers' (less-educated, tradition-bound, localized workers). "
+            "Right-wing populists mobilize the latter group, who feel economically and culturally left behind.\n\n"
+            "**Guriev and Papaioannou's shock thesis** extends this to acute disruption: sudden economic "
+            "deterioration (the 2008 crash, austerity, rapid regional job losses) strains the democratic contract. "
+            "When conditions deteriorate sharply, trust erodes and anti-establishment voting follows. "
+            "Both accounts share a common logic — economic dislocation, whether gradual or sudden, is the primary driver."
         )
 
     with tab2:
@@ -215,23 +211,15 @@ elif section == "Theory & Approach":
             "defensive nationalist and nativist political backlash."
         )
 
-    with tab3:
-        st.subheader("The Macro-Economic Shock View")
-        st.markdown("**Core Argument:** Sudden structural disruptions fracture political stability.")
-        st.error(
-            "Sudden economic system shocks (like the 2008 financial crash, localized "
-            "austerity measures, or rapid regional job losses) are theorized to strain the democratic contract. When macro conditions "
-            "deteriorate sharply, trust in the system erodes, which can fuel anti-establishment voting behavior."
+        st.markdown("---")
+
+        st.header("Country Case Selection Matrix")
+        st.markdown(
+            "I use **European Social Survey (ESS Round 11)** data "
+            "to test which explanation holds the most predictive weight. To capture a comprehensive picture of European political and economic dynamics, "
+            "the project targets **ten distinct nations** chosen to provide variation "
+            "across institutional models, welfare traditions, and structural vulnerabilities."
         )
-
-    st.markdown("---")
-
-    st.header("Country Case Selection Matrix")
-    st.markdown(
-        "To capture a comprehensive picture of European political and economic dynamics, "
-        "the project targets **ten distinct nations** chosen to provide variation "
-        "across institutional models, welfare traditions, and structural vulnerabilities."
-    )
 
     st.markdown(
         """
@@ -257,11 +245,11 @@ elif section == "Theory & Approach":
             </tr>
             <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
                 <td style="padding: 12px; font-weight: bold; white-space: nowrap;">🇮🇹 Italy</td>
-                <td style="padding: 12px; line-height: 1.5;">Chronic long-term economic stagnation, deep sub-national regional inequality, established history of institutional populism.</td>
+                <td style="padding: 12px; line-height: 1.5;">Long-term economic stagnation, deep regional inequality, history of institutional populism.</td>
             </tr>
             <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
                 <td style="padding: 12px; font-weight: bold; white-space: nowrap;">🇪🇸 Spain</td>
-                <td style="padding: 12px; line-height: 1.5;">Post-crisis structural recovery case, high baseline youth unemployment, volatile and shifting party system dynamics.</td>
+                <td style="padding: 12px; line-height: 1.5;">Post-crisis structural recovery case, high youth unemployment, volatile and shifting political dynamics.</td>
             </tr>
             <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
                 <td style="padding: 12px; font-weight: bold; white-space: nowrap;">🇬🇷 Greece</td>
@@ -273,7 +261,7 @@ elif section == "Theory & Approach":
             </tr>
             <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
                 <td style="padding: 12px; font-weight: bold; white-space: nowrap;">🇵🇹 Portugal</td>
-                <td style="padding: 12px; line-height: 1.5;">Southern European peripheral economy with distinct post-crisis labor market adjustments and unique electoral dynamics.</td>
+                <td style="padding: 12px; line-height: 1.5;">Southern European peripheral economy with distinct post-crisis labor market adjustments.</td>
             </tr>
             <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
                 <td style="padding: 12px; font-weight: bold; white-space: nowrap;">🇫🇮 Finland</td>
@@ -303,15 +291,15 @@ elif section == "Theory & Approach":
 
     st.markdown(
         """
-        * **The Scope:** 10 diverse European countries representing different economic models (*Germany, France, Italy, Spain, Poland, Sweden, Bulgaria, Portugal, Finland, and Greece*), segmented into regional boundaries (**NUTS 1**).
+        * **The Scope:** 10 European countries representing different economic models segmented into regional boundaries (**NUTS 1**).
         * **The Mapping:** Individual data from **ESS Round 11** was mapped to a binary classification (*Radical Right* vs. *Other*), verified using the academic **PopuList database** and further online research.
-        * **The Engineering (dbt):** I used **dbt** to clean the data, construct indices, and apply survey weights. Individual voter profiles were then merged with regional macro indicators (*GDP relative to the EU average* and *net migration*).
+        * **The Engineering (dbt):** I used **dbt** to clean the data, construct indices, and apply survey weights. Individual voter profiles were then merged with regional macro indicators.
 
-        ### Advanced Analytics & Interactive Interface
+        ### Data Analytics & Interactive Interface
 
         * **Statistical Modeling & Diagnostics:** Powered by `statsmodels` and `scipy`. I used a Generalized Linear Model (GLM) for predictive voter inference, verified via **Variance Inflation Factors (VIF)** to check for multicollinearity among structural and attitudinal predictors.
-        * **Machine Learning & Typology Generation:** Driven by `scikit-learn`. I applied **Robust Scaling** to insulate the data from regional economic outliers and ran a $K$-means clustering routine to isolate the final 6 regional profiles.
-        * **The Interactive Engine:** Handled via `Plotly` and Streamlit's reactive components, allowing real-time slicing through spatial choropleths and metrics, backed by a structured engineering core running on `pandas` and `SQLAlchemy`.
+        * **Machine Learning & Typology Generation:** Driven by `scikit-learn`. I applied **Robust Scaling** to insulate the data from regional economic outliers and ran a $K$-means clustering routine to isolate 6 regional profiles.
+        * **The Interactive Engine:** Handled via `Plotly` and Streamlit's reactive components, creating spatial choropleths and metrics, backed by a structured engineering core running on `pandas` and `SQLAlchemy`.
         """
     )
 
@@ -319,7 +307,7 @@ elif section == "Theory & Approach":
 # SECTION: MACRO ENVIRONMENT, TRUST & BACKLASH
 # =====================================================================
 elif section == "Macro Environment Visuals":
-    st.header("1. Macro Environments & Systemic Trust Variance")
+    st.header("1. Macro Environments")
 
     required_cols = [
         "nuts1_region",
@@ -344,7 +332,7 @@ elif section == "Macro Environment Visuals":
     row1_col1, row1_col2 = st.columns(2)
 
     with row1_col1:
-        st.markdown("**Economic Divergence: 5-Year Regional GDP Trajectory vs. EU Average**<br>*(Red = Falling Behind Continental Growth)*", unsafe_allow_html=True)
+        st.markdown("**Economic Divergence: 5-Year Regional GDP Trajectory vs. EU Average**<br>*(Red = Falling Behind Continental Growth Rate)*", unsafe_allow_html=True)
         fig_gdp_pct = go.Figure(go.Choropleth(
             geojson=nuts1_geojson,
             locations=df_regions["nuts1_region"],
@@ -368,8 +356,8 @@ elif section == "Macro Environment Visuals":
             """
             <div style="padding: 10px; background-color: rgba(255,255,255,0.02); border-radius: 5px;">
                 <strong>Key Takeaway: Perceived vs. Real Decline</strong><br>
-                • While virtually all target regions experienced positive <i>nominal</i> growth over this duration, large disparities emerge when benchmarked against the continental trend.<br>
-                • Several key regions notably lagged behind the EU-27 baseline average, possibly emphasizing a sense of localized "relative decline" compared to high-performing growth hubs.
+                • While almost all target regions experienced positive <i>nominal</i> growth over this period, large disparities emerge when benchmarked against the continental trend.<br>
+                • Several key regions notably lagged behind the EU-27 baseline average, possibly emphasizing a sense of "relative decline."
             </div>
             """,
             unsafe_allow_html=True
@@ -413,7 +401,7 @@ elif section == "Macro Environment Visuals":
             <div style="padding: 10px; background-color: rgba(255,255,255,0.02); border-radius: 5px;">
                 <strong>Key Takeaway: Geopolitical Shifts vs. Rhetoric</strong><br>
                 • Shock-level acceleration in Poland is primarily driven by displacement from the war in Ukraine.<br>
-                • Outside of clear migration entry hubs in Spain and Italy, the actual rate of migration acceleration remains rather consistent elsewhere, indicating that public anxiety may outpace actual short-run demographic shifts.
+                • Outside of clear migration entry hubs in Spain and Italy, the actual rate of migration remains consistent elsewhere, indicating that public anxiety may outpace actual short-run demographic shifts.
             </div>
             """,
             unsafe_allow_html=True
@@ -465,8 +453,8 @@ elif section == "Macro Environment Visuals":
         <div style="padding: 12px; margin-top: 5px; border-left: 4px solid #4a5568; background-color: rgba(255,255,255,0.01);">
             <strong>🏛️ Systemic Trust Insights:</strong><br>
             • <b>The Nordic Anchor:</b> Nordic democracies exhibit a distinctively high median trust baseline, creating a significant societal buffer.<br>
-            • <b>The Low-Trust Axis:</b> Poland and Bulgaria anchor the opposite end of the spectrum, reflecting structural friction with national and supranational political bodies.<br>
-            • <b>Sub-National Cohesion vs. Friction:</b> Germany and Italy reveal more volatile regional variation, whereas other states are more tightly clustered.
+            • <b>The Low-Trust Axis:</b> Poland and Bulgaria anchor the opposite end of the spectrum, indicating societal friction.<br>
+            • <b>Sub-National Variation:</b> Germany and Italy reveal more volatile regional spreads, whereas other states are more tightly clustered.
         </div>
         """,
         unsafe_allow_html=True
@@ -508,6 +496,16 @@ elif section == "Macro Environment Visuals":
         )
         st.plotly_chart(fig_vote_map, use_container_width=True)
 
+    st.markdown(
+        """
+        <div style="padding: 12px; background-color: rgba(255,255,255,0.02); border-radius: 5px; border-top: 3px solid #e74c3c;">
+            <strong>Institutional Normalization</strong><br>
+            • The highest concentration of radical-right voting is in <b>Italy and France</b>, reflecting mainstream political options where voting far-right has transitioned from a fringe protest mechanism into a normalized institutional choice.
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
     with col4:
         st.subheader("Voting Behaviour Composition by Country")
         keep_categories = ["Valid Party Vote", "Ineligible / Not Applicable", "Refuse to Say"]
@@ -542,6 +540,17 @@ elif section == "Macro Environment Visuals":
         )
         st.plotly_chart(fig_stacked, use_container_width=True)
 
+        # Behavioral Composition Takeaways
+    st.markdown(
+        """
+        <div style="padding: 12px; background-color: rgba(255,255,255,0.02); border-radius: 5px; border-top: 3px solid #d4a847;">
+            <strong>The Social Stigma Effect</strong><br>
+            • Significant variations emerge in respondents' willingness to disclose their actual vote choices, suggesting <b>social stigma</b>. Countries like <b>Sweden</b> display distinct disclosure dynamics compared to <b>Italy</b>, highlighting where non-random missing data may obscure the true strength of polarizing factions.
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
 # =====================================================================
 # SECTION: INDIVIDUAL-LEVEL GLM MODEL
 # =====================================================================
@@ -550,9 +559,7 @@ elif section == "Individual-Level GLM Model":
     # Consolidated Modeling Strategy & Technical Reading Guide
     st.info(
     """
-    **Model Objective:** This model quantifies how individual attitudes and "
-        "macro-structural regional conditions concurrently relate to radical-right voting propensity, "
-        "estimated via a survey-weighted binomial logistic regression (GLM).
+    **Model Objective:** This model quantifies how individual attitudes relate to radical-right voting propensity, using a survey-weighted binomial logistic regression (GLM).
 
      **Modeling Strategy & Statistical Guide**
 
@@ -560,9 +567,7 @@ elif section == "Individual-Level GLM Model":
 
     **How to read the table below:**
 
-    • Coefficients represent **log-odds** estimates from a survey-weighted binomial GLM.
-
-    • Significance levels follow standard academic thresholds: `* p < 0.05` (Significant), `** p < 0.01` (Highly Significant), and `*** p < 0.001` (Extremely Significant).
+    Coefficients represent **log-odds** estimates. Significance levels follow standard academic thresholds: `* p < 0.05` (Significant), `** p < 0.01` (Highly Significant), and `*** p < 0.001` (Extremely Significant).
     """
 )
 
@@ -664,22 +669,21 @@ elif section == "Individual-Level GLM Model":
         The individual-level data reveals a clear hierarchy of what matters most to voters.
         Rather than short-run economic shifts, voting behavior is heavily associated with personal outlooks and national history.
 
-        ** 💪🏼💪🏼 The Strongest Predictors (Attitudes Matter Most)**
+        **The National Context (The Core Baseline)** 💪🏼💪🏼💪🏼
+        * Even when comparing voters with the *exact same* education, age, and attitudes, **national context remains the strongest factor**.
+        * Simply living in **Italy, France, Finland, Sweden, or Spain** gives voters a significantly higher baseline probability of voting radical right, reflecting established parties and distinct national political landscapes.
+        ---
+        **Attitudes Matter** 💪🏼💪🏼
         * **Immigration Perceptions:** Discontent with immigration is the single strongest predictor of radical-right voting in the dataset.
         * **Institutional Trust:** Lower trust in political institutions is associated with a significant increase in anti-establishment voting.
 
         ---
 
-        ** 💪🏼 Secondary Drivers (Demographics & Structure)**
+        **Secondary Drivers (Demographics)** 💪🏼
         * **Education:** Higher formal education is associated with lower support, though its effect size is smaller than the attitudinal variables above.
         * **Gender & Age:** Women and older respondents show noticeably lower baseline support.
 
-        ---
-
-        ** 💪🏼💪🏼💪🏼 The National Context (The Core Baseline)**
-        * Even when comparing voters with the *exact same* education, age, and attitudes, **national context remains the strongest factor**.
-        * Simply living in **Italy, France, Finland, Sweden, or Spain** gives voters a significantly higher baseline probability of voting radical right, reflecting established parties and distinct national political landscapes.
-        """
+    """
     )
 
 # =====================================================================
@@ -752,7 +756,7 @@ elif section == "Regional Structural Typology":
 
     ordered_typologies = [
         "Economically Deprived Periphery",
-        "Established Radical Right Influence",
+        "Affluent Established Radical Right Presence",
         "High Migration Low Backlash Regions",
         "Vulnerable Battlegrounds",
         "Alienated and Educated Skeptics",
@@ -784,38 +788,18 @@ elif section == "Regional Structural Typology":
 # SECTION: STRATEGIC IMPLICATIONS
 # =====================================================================
 elif section == "Key Findings":
-    st.header("What Do the Results Suggest? 📊")
-
+    st.header("What Do the Results Suggest?")
     st.markdown(
         """
         The results challenge several common assumptions about radical-right voting.
 
         * **Economic hardship alone does not explain political outcomes.** Some of the most economically disadvantaged regions in the dataset do not exhibit especially high levels of radical-right support, while several affluent regions record above-average vote shares.
+        * **Immigration attitudes and institutional trust matter more than macro factors** — and more than actual migration rates.
+        * **National context remains the most influential factor**, even after accounting for individual attitudes and regional conditions — pointing to institutional and political baselines the model doesn't capture directly.
 
-        * **Immigration exposure and institutional distrust are important, but not sufficient explanations on their own.** Their relationship with radical-right voting varies across countries and regions.
-
-        * **Individual attitudes matter more than regional economic conditions.** The statistical model identifies perceptions of immigration and institutional trust as the strongest predictors of radical-right voting, while regional economic indicators show weaker and less consistent relationships.
+        Taken together, radical-right voting is best understood as a multi-level phenomenon: individual attitudes outweigh short-term economic shifts, while national political history sets the baseline likelihood across Europe.
         """
     )
-
-    st.info(
-        """
-        **Key Finding:** The strongest predictors of radical-right voting are individual attitudes rather than short-term regional economic conditions.
-        """
-    )
-
-    st.markdown(
-        """
-        ### The Role of National Context
-
-        Even after accounting for individual attitudes and regional characteristics, substantial differences remain between countries. This suggests that national political environments continue to play an important role in shaping electoral behaviour.
-
-        ### Overall Conclusion
-
-        Radical-right voting is best understood as a multi-level phenomenon. Individual attitudes provide the strongest explanation, regional conditions play a more limited role, and national political contexts remain important in shaping outcomes across Europe.
-        """
-    )
-
 # =====================================================================
 # SECTION: SCOPE & LIMITATIONS
 # =====================================================================
@@ -827,11 +811,11 @@ elif section == "Scope & Limitations":
     with lim_col1:
         st.markdown(
             """
-            ### Time & Technical Trade-offs
-            * **The 3-Week Sprint:** This entire dashboard was built from scratch within a tight three-week timeline.
+            ### ⌛️ Time & Technical Trade-offs
+            * **The 3-Week Sprint:** All research, data wrangling, analysis, and this entire dashboard were completed within a tight three-week timeline.
             * **The "Snapshot" Reality:** The model looks at a specific moment in time (cross-sectional survey data). It captures **predictive associations**, but does not establish causal proof.
-            * **The Migration Data Window:** Ideally, we would have matched our 5-year GDP timeline. However, earlier data was missing, so a **2-year delta** was used to preserve data integrity.
-            * **The Clustering Balancing Act:** In the K-Means model, balancing structural stability against interpretability is difficult. One cluster contains only 4 regions, making that bucket sensitive to outliers, and possibly capturing residual variation.
+            * **The Migration Data Window:** Migration data was not consistently available over the time period, so a **2-year delta** was used rather than 5 years.
+            * **The Clustering Balancing Act:** In the K-Means model, balancing structural stability against interpretability is difficult. One cluster contains only 4 regions, possibly capturing residual variation.
             """
         )
 
@@ -839,8 +823,8 @@ elif section == "Scope & Limitations":
         st.markdown(
             """
             ### 🗺️ Survey Reality & Border Friction
-            * **The Region (NUTS 1):** These are coarse, large regions which obscure some nuance. NUTS 2 would offer hyper-local detail, but not all countries in the survey support that granularity, and sample sizes per zone would decrease significantly. NUTS 1 keeps the sample sizes robust.
-            * **The Regional Imbalance (Fixed Effects Omissions):** Some nations have numerous NUTS regions, providing rich internal variation. Others, like **Portugal and Finland**, map to only a single NUTS-1 region. Because a region cannot vary against itself, these were omitted from the fixed effects model to keep the mathematics valid.
+            * **The Region (NUTS 1):** These are coarse, large regions which obscure nuance. NUTS 2 would offer more local detail, but not all countries in the survey support that granularity, and sample sizes per region would decrease significantly. NUTS 1 keeps the sample sizes robust.
+            * **The Regional Imbalance (Fixed Effects Omissions):** Some nations have numerous NUTS regions, providing rich internal variation. Others, like **Portugal and Finland**, map to only a single NUTS-1 region. Because a region cannot vary against itself, these were omitted from the fixed effects model.
             * **The Stigma of the Ballot Box:** Radical voting behavior often suffers from non-random missing data, due to outright refusals to disclose or social stigma around admitting a far-right vote choice.
             """
         )
