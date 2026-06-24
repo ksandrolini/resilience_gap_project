@@ -29,12 +29,28 @@ The foundational principle guiding this research is:
 
 ## 3. Data Infrastructure & Scope
 
-The analytical pipeline dynamically integrates and harmonizes two distinct data granularities across a **10-nation European subset**:
-* **Individual-Level Microdata:** *European Social Survey (ESS) Round 11 (2023/2024)*. Features core metrics tracking political orientation, socio-demographic baselines, institutional trust scores, and self-reported voting choices.
-* **Regional-Level Macro Metrics:** *Eurostat Regional Databases*. Features structural indicators aggregated at the NUTS 1 level, including GDP per capita (as a % of the EU average), standardized unemployment rates, and net migration metrics.
-* **Spatial Geometry Engine:** Standardized **NUTS 1 TopoJSON/GeoJSON** boundaries to enable custom coordinate mapping.
+The analytical pipeline dynamically integrates and harmonizes individual-level survey microdata with localized macro-regional indicators across a **10-nation European framework**.
 
-*Main Production Stack:* Python, Pandas, NumPy, Statsmodels (GLM module), Scikit-Learn (K-Means), Plotly Express & Graph Objects, and Streamlit.
+* **Survey Core Source:** European Social Survey (ESS) Round 11 (2023/2024 Integrated File, Edition 4.1)
+* **Regional Structural Source:** Eurostat Regional Database (2024 Dataset Releases)
+* **Spatial Geometry Engine:** Standardized NUTS 1 TopoJSON/GeoJSON boundary coordinates
+* **Geographic Alignment Key:** Harmonized **NUTS 1 alphanumeric codes** (e.g., `DE1`, `FR1`) mapping individual respondents directly to their corresponding macro-economic environment.
+* **Core Production Stack:** Python, Pandas, NumPy, Statsmodels (GLM Module), Scikit-Learn (K-Means Processing), Plotly Express & Graph Objects, and Streamlit.
+
+---
+
+### 3.1 Data Access & Local Replication Guide
+To comply with data redistribution licensing agreements and maintain a lightweight open-source repository, **raw data files are explicitly omitted via `.gitignore`**. To locally run or replicate this dashboard environment, download the following source assets:
+
+1. **ESS Microdata:** Download the full ESS Round 11 integrated file in SPSS (`.sav`) or CSV format via the official [ESS Data Portal](https://www.europeansocialsurvey.org/data/).
+2. **Eurostat Macro Data:** Extract structural NUTS 1 metrics (regional GDP as a % of the EU average, standardized unemployment rates, and a 2-year delta for net migration) from the [Eurostat Database](https://ec.europa.eu/eurostat/data/database).
+3. **Local Directory Alignment:** Save your raw downloads inside your local project space strictly following this structure:
+   ```text
+   └── data/
+       ├── 1_raw/
+       │   ├── ess_round11_raw.sav
+       │   └── eurostat_nuts1_macro.csv
+       └── 2_interim/
 
 ---
 
