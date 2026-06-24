@@ -121,35 +121,38 @@ st.markdown(
     """
     <style>
         section[data-testid="stSidebar"] {
-            width: 250px !important;
+            width: 275px !important;
         }
     </style>
     """,
     unsafe_allow_html=True
 )
 
-st.sidebar.title("🇪🇺 The Multilevel Bridge")
+st.sidebar.title("🇪🇺 The Geography of Discontent")
 section = st.sidebar.radio(
     "Navigate",
     [
-        "Introduction",
-        "Theory & Approach",
-        "Macro Environment Visuals",
-        "Individual-Level GLM Model",
-        "Regional Structural Typology",
-        "Key Findings",
-        "Scope & Limitations",
-        "Data Sources & Attributions",
+        "1. Introduction",
+        "2. Theory & Literature",
+        "3. Macro Economics & Trust",
+        "4. Voter Inference Model",
+        "5. Regional Typologies",
+        "6. Key Takeaways",
+        "7. Scope & Limitations",
+        "8. Data & Attributions"
     ]
 )
 
 # =====================================================================
 # SECTION: INTRODUCTION
 # =====================================================================
-if section == "Introduction":
-    st.title("What Drives Far-Right Voting?")
-    st.subheader("Attitudes, Economics, or Something Else?")
-
+if section == "1. Introduction":
+    st.markdown(
+        """
+        # What Drives Far-Right Voting?
+        ### *Attitudes, Economics, or Something Else?*
+        """
+    )
     st.markdown(
         """
         Support for radical-right parties has grown across Europe, but there is still considerable disagreement about why.
@@ -164,7 +167,7 @@ if section == "Introduction":
         * 👤 **Individual Attitudes:** Trust in institutions, views on immigration, education, age, and gender.
         * 🔍 **Regional Typologies:** A data-driven clustering approach that groups regions with similar economic and demographic characteristics.
 
-        ### Why Does It Matter? 🤌🏽🤌🏽🤌🏽
+        ### Why Does It Matter? 🤌🏽
 
         Governments often respond to political discontent based on assumptions about what is causing it. If those assumptions are wrong, policies may target the wrong problems.
 
@@ -176,7 +179,7 @@ if section == "Introduction":
 # =====================================================================
 # SECTION: FOUNDATIONS, COUNTRIES & PIPELINE
 # =====================================================================
-elif section == "Theory & Approach":
+elif section == "2. Theory & Literature":
     st.header("Project Foundations: Pressure-Testing the Literature")
     st.markdown(
         "Before diving into the data, we ground the analysis in the political sociology "
@@ -306,7 +309,7 @@ elif section == "Theory & Approach":
 # =====================================================================
 # SECTION: MACRO ENVIRONMENT, TRUST & BACKLASH
 # =====================================================================
-elif section == "Macro Environment Visuals":
+elif section == "3. Macro Economics & Trust":
     st.header("1. Macro Environments")
 
     required_cols = [
@@ -554,8 +557,8 @@ elif section == "Macro Environment Visuals":
 # =====================================================================
 # SECTION: INDIVIDUAL-LEVEL GLM MODEL
 # =====================================================================
-elif section == "Individual-Level GLM Model":
-    st.header("3. Which Factors Matter Most?")
+elif section == "4. Voter Inference Model":
+    st.header("Which Factors Matter Most?")
     # Consolidated Modeling Strategy & Technical Reading Guide
     st.info(
     """
@@ -689,7 +692,7 @@ elif section == "Individual-Level GLM Model":
 # =====================================================================
 # SECTION: REGIONAL STRUCTURAL TYPOLOGY
 # =====================================================================
-elif section == "Regional Structural Typology":
+elif section == "5. Regional Typologies":
     st.header("4. Regional Structural Typology")
 
     st.markdown(
@@ -787,7 +790,7 @@ elif section == "Regional Structural Typology":
 # =====================================================================
 # SECTION: STRATEGIC IMPLICATIONS
 # =====================================================================
-elif section == "Key Findings":
+elif section == "6. Key Takeaways":
     st.header("What Do the Results Suggest?")
     st.markdown(
         """
@@ -803,7 +806,7 @@ elif section == "Key Findings":
 # =====================================================================
 # SECTION: SCOPE & LIMITATIONS
 # =====================================================================
-elif section == "Scope & Limitations":
+elif section == "7. Scope & Limitations":
     st.header("Scope & Limitations")
 
     lim_col1, lim_col2 = st.columns(2)
@@ -832,7 +835,7 @@ elif section == "Scope & Limitations":
 # =====================================================================
 # SECTION: DATA SOURCES & ATTRIBUTIONS
 # =====================================================================
-elif section == "Data Sources & Attributions":
+elif section == "8. Data & Attributions":
     st.header("Data Sources, Theoretical Frameworks & Technical Attributions 📚")
 
     tab_data, tab_theory, tab_ai = st.tabs(["📊 Core Datasets", "📖 Academic Theory", "🛠️ AI Collaboration Stack"])
