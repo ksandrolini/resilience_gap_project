@@ -30,7 +30,6 @@ The foundational principle guiding this research is:
 ## 3. Data Infrastructure & Scope
 
 The analytical pipeline dynamically integrates and harmonizes two distinct data granularities across a **10-nation European subset**:
-
 * **Individual-Level Microdata:** *European Social Survey (ESS) Round 11 (2023/2024)*. Features core metrics tracking political orientation, socio-demographic baselines, institutional trust scores, and self-reported voting choices.
 * **Regional-Level Macro Metrics:** *Eurostat Regional Databases*. Features structural indicators aggregated at the NUTS 1 level, including GDP per capita (as a % of the EU average), standardized unemployment rates, and net migration metrics.
 * **Spatial Geometry Engine:** Standardized **NUTS 1 TopoJSON/GeoJSON** boundaries to enable custom coordinate mapping.
@@ -52,4 +51,110 @@ The analytical pipeline dynamically integrates and harmonizes two distinct data 
 | **Regional Tier (Macro)** | Economic Performance | `gdp` | GDP per capita as a % of the European Union average |
 | **Regional Tier (Macro)** | Labor Insecurity | `unemployment` | Standardized regional unemployment rates |
 | **Regional Tier (Macro)** | Demographics | `migration` | Net migration window (calculated via a 2-year delta) |
-| **Individual Tier (Micro)**| Institutional Trust | `trust_index
+| **Individual Tier (Micro)**| Institutional Trust | `trust_index` | Scale measuring composite trust in representative infrastructure |
+| **Individual Tier (Micro)**| Identity / Culture | `immigration_attitudes`| Standardized evaluations regarding immigration impacts |
+| **Individual Tier (Micro)**| Controls | `age`, `gender`, `education`| Demographic baseline balancing |
+
+---
+
+## 5. Analytical Pipeline
+
+The architecture follows a multi-tiered pipeline that separates structural clustering from behavioral inference before synthesizing them inside the interactive front-end:
+
+```mermaid
+flowchart TD
+    subgraph Data Input & Harmonization
+        A[ESS Round 11 Microdata]
+        B[Eurostat NUTS 1 Baselines]
+        C[NUTS 1 Spatial GeoJSON]
+        A --> D[Clean, Standardize, & Join]
+        B --> D
+    end
+
+    subgraph Track 1: Behavioral Inference
+        D --> E[Generalized Linear Models]
+        E --> F[Incorporate Fixed Effects]
+        F --> G[Extract Odds Ratios & Beta Weights]
+    end
+
+    subgraph Track 2: Spatial Archetypes
+        D --> H[K-Means Structural Clustering]
+        H --> I[Isolate 6 Regional Archetypes]
+        I --> J[Overlay Behavioral Mean Matrix]
+    end
+
+    subgraph Front-End Synthesis
+        G --> K[Interactive Streamlit Dashboard]
+        J --> K
+        C --> K
+    end
+```
+
+## 6. Central Hypotheses
+
+* **H1: The Pure Economic Dissociation:** Regional economic deprivation alone is a weak predictor of radical-right support; affluent regions can record above-average support if accompanied by low institutional trust.
+* **H2: Attitudinal Primacy:** Individual variations in institutional trust and immigration attitudes exert significantly stronger statistical signals (measured via GLM odds ratios) than regional macroeconomic indicators.
+* **H3: National Boundary Baselines:** Unobserved national political contexts (captured via fixed-effects controls) anchor baseline voting thresholds that regional-level variations cannot fully override.
+
+---
+
+## 7. Methodology
+
+### 7.1 Multi-Level Modeling (GLM)
+The behavioral inference model runs logistic Generalized Linear Models (GLMs). It models the log-odds of a radical-right vote as a function of individual attributes, controlling for country-level fixed effects:
+
+$$\log\left(\frac{P(Y_i = 1)}{1 - P(Y_i = 1)}\right) = \beta_0 + \beta_1(\text{Trust}_i) + \beta_2(\text{Macro}_\text{Region}) + \gamma(\text{Demographics}_i) + \delta_{\text{Country}}$$
+
+Where $\delta_{\text{Country}}$ controls for unobserved national-level structural baselines.
+
+### 7.2 Spatial Clustering & Behavioral Overlay
+The spatial typology engine separates structural macro environments from political attitudes by utilizing a two-step approach:
+1. **Unsupervised K-Means Clustering:** Iterates across the regional metrics (`gdp`, `unemployment`, `migration`) to define $K=6$ optimal structural clusters.
+2. **Attitudinal Overlay Mapping:** Groups the underlying individual respondents by their region's assigned cluster and calculates the median behavioral outcomes (`trust_index`, `radical_right_vote`) to form a complete Structural and Behavioural Profile Matrix.
+
+---
+
+## 8. Selected Regional Typology Archetypes ($K=6$)
+
+The spatial clustering engine identifies six distinct regional archetypes across the European canvas:
+* **Economically Deprived Periphery:** Lower-than-average GDP, persistent labor market challenges, varying levels of political alienation.
+* **Affluent Established Radical Right Presence:** Strong macroeconomic foundations and high regional wealth, paired with distinct cultural anxieties.
+* **High Migration Low Backlash Regions:** Robust demographic influxes matched with resilient institutional trust profiles.
+* **Vulnerable Battlegrounds:** Volatile economic metrics mixed with highly polarized attitudinal variances.
+* **Alienated and Educated Skeptics:** High educational footprints but pronounced structural institutional trust deficits.
+* **Status Quo Powerhouses:** Peak economic performance metrics with stable, highly resilient mainstream democratic support.
+
+---
+
+## 9. Key Dashboard Insights
+
+* **The Hardship Paradox:** Economic deprivation does not automatically scale to radical-right support. Several highly affluent clusters record significant radical-right vote shares, while some of the most economically disadvantaged regions maintain baseline support profiles.
+* **The Trust Premium:** Individual institutional trust levels and immigration attitudes consistently outperform regional macro factors—and out-predict direct local migration rates.
+* **The Rigidity of Country Borders:** Fixed-effects coefficients indicate that national histories, specific party systems, and political traditions set rigid baseline probabilities across Europe that individual regional variations cannot fully alter.
+
+---
+
+## 10. Scope, Trade-offs & Limitations
+
+* **The 3-Week Sprint Reality:** This entire research pipeline, data synchronization, econometric modeling, and visualization engine were completed within a strict three-week timeline.
+* **Cross-Sectional Constraints:** The models evaluate cross-sectional survey snapshots. They capture predictive associations and odds ratios; they do not establish mathematical causality.
+* **Geographic Border Friction:** While large NUTS 1 regions maintain robust survey sample sizes, they mask localized micro-nuances. Furthermore, single-region nations (such as Portugal and Finland) lack internal regional variation and were necessarily omitted from the internal fixed-effects modeling step.
+* **Ballot Box Stigma:** Self-reported voting behavior for radical-right parties contains non-random missing data patterns stemming from social desirability bias and non-disclosures.
+
+---
+
+## 11. Running the Project
+
+### 11.1 Installation
+Install all required processing, visualization, and deployment frameworks:
+
+```bash
+pip install pandas numpy scipy statsmodels scikit-learn plotly streamlit
+```
+### 11.2 Launch the Front-End Dashboard
+
+Execute the server locally from the root repository directory:
+
+```bash
+streamlit run app.py
+```
