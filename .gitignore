@@ -7,8 +7,7 @@ target/
 modules/
 
 # Data exclusions
-data/1_raw/*
-data/2_interim/*
+data/
 !data/**/.gitkeep
 
 # System files
