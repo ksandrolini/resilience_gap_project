@@ -158,3 +158,10 @@ Execute the server locally from the root repository directory:
 ```bash
 streamlit run app.py
 ```
+
+## 12. Ethical & Interpretative Frame
+
+* **No Normative Stigmatization:** This project serves as a descriptive and predictive analysis of political geography, not a normative evaluation of voters. It does not classify individual citizens or specific regions using pejorative or moralizing labels.
+* **Analytical Archetypes vs. Real Groups:** The six regional typologies derived via K-Means clustering are exploratory statistical segments designed to unpack macro trends. They represent analytical models, not fixed, homogeneous social groups. 
+* **Associational Bounds:** In alignment with rigorous econometric standards, all multi-level GLM outputs, odds ratios, and regional profiles are interpreted strictly as evidence-informed **predictive associations**, not deterministic or causal pathways. 
+* **Accounting for Stigma:** The analysis explicitly acknowledges the non-random missingness often found in radical-right survey data, treating self-reported electoral choices as an approximation rather than an absolute baseline.
