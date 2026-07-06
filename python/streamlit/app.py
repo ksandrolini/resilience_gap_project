@@ -137,7 +137,7 @@ section = st.sidebar.radio(
         "3. Macro Economics & Trust",
         "4. Voter Inference Model",
         "5. Regional Typologies",
-        "6. Key Takeaways",
+        "6. Conclusions & Key Takeaways",
         "7. Scope & Limitations",
         "8. Data & Attributions"
     ]
@@ -790,45 +790,109 @@ elif section == "5. Regional Typologies":
 # =====================================================================
 # SECTION: STRATEGIC IMPLICATIONS
 # =====================================================================
-elif section == "6. Key Takeaways":
-    st.header("What Do the Results Suggest?")
-    st.markdown(
-        """
-        The results challenge several common assumptions about radical-right voting.
+elif section == "6. Conclusions & Key Takeaways":
+ # Section Header
+    st.header("📊 Analytical Findings & Empirical Insights")
+    st.write(
+        "The results of this multi-level analysis fundamentally challenge several common "
+        "assumptions surrounding European radical-right voting behavior."
+    )
 
-        * **Economic hardship alone does not explain political outcomes.** Some of the most economically disadvantaged regions in the dataset do not exhibit especially high levels of radical-right support, while several affluent regions record above-average vote shares.
-        * **Immigration attitudes and institutional trust matter more than macro factors** — and more than actual migration rates.
-        * **National context remains the most influential factor**, even after accounting for individual attitudes and regional conditions — pointing to institutional and political baselines the model doesn't capture directly.
+    # 1. Structural Paradoxes (Two-column layout for contrasting cases)
+    st.subheader("1. The Macroeconomic Hardship Paradox")
+    col1, col2 = st.columns(2)
 
-        Taken together, radical-right voting is best understood as a multi-level phenomenon: individual attitudes outweigh short-term economic shifts, while national political history sets the baseline likelihood across Europe.
-        """
+    with col1:
+        st.info("**Low Backlash Under Structural Pressure**")
+        st.write(
+            "Some regions under the strongest structural pressure (high unemployment, "
+            "low growth, and rapid migration inflows) do not show correspondingly high "
+            "levels of radical-right support."
+        )
+        st.markdown(
+            "**Spanish regions** absorb some of the highest migration "
+            "acceleration in the dataset, yet record some of the lowest radical-right vote shares."
+        )
+        st.markdown(
+            "**Southern Italy & Greece** are among the most economically "
+            "deprived zones in the analysis, yet show only average levels of radical-right voting."
+        )
+
+    with col2:
+        st.warning("**High Support Within Affluent Hubs**")
+        st.write(
+            "Strikingly, the highest electoral support "
+            "often manifests within relatively prosperous macro environments."
+        )
+        st.markdown(
+            "**Sweden, Finland, & Northern Italy's** high baseline prosperity and "
+            "reputed institutional strength do not insulate them from radical-right shifts."
+        )
+        st.markdown(
+            "**The Micro-Alignment:** This directly matches our individual-level modeling, where "
+            "subjective cultural immigration attitudes, rather than raw pocketbook economics, act as "
+            "the strongest mathematical predictor of support."
+        )
+
+    st.write("---")
+
+    # 2. Core Takeaways (Styled Markdown List)
+    st.subheader("2. Core Empirical Takeaways")
+
+    st.markdown("""
+    * ❌ **Economic Determinism Fails:** Structural economic hardship alone is an inadequate predictor of regional variation in radical-right voting.
+    * 🧠 **Attitudes Outweigh Agregates:** Subjective immigration attitudes and institutional trust metrics show vastly stronger statistical correlations to voting patterns than macroeconomic indicators or actual localized migration flows.
+    * 🗺️ **Borders Hold Rigid:** National macro-contexts, historic party architectures, and distinct political trajectories remain the single largest source of baseline variance—even after controlling for both individual and regional factors.
+    """)
+
+    st.write("---")
+
+    # 3. Final Synthesis (Using a prominent blockquote or success box)
+    st.markdown("### 3. The Bottom Line")
+    st.success(
+        "**Radical-right support is built in layers:** individual attitudes spark the vote, "
+        "regional economic strain acts as a secondary accelerant, and national political "
+        "boundaries define the ultimate baseline rules of engagement across Europe."
     )
 # =====================================================================
 # SECTION: SCOPE & LIMITATIONS
 # =====================================================================
 elif section == "7. Scope & Limitations":
     st.header("Scope & Limitations")
+    st.write(
+        "A rigorous multi-level empirical analysis requires transparently acknowledging "
+        "the boundaries of its data, framework, and execution parameters."
+    )
 
-    lim_col1, lim_col2 = st.columns(2)
+    lim_col1, lim_col2, lim_col3 = st.columns(3)
 
     with lim_col1:
         st.markdown(
             """
-            ### ⌛️ Time & Technical Trade-offs
-            * **The 3-Week Sprint:** All research, data wrangling, analysis, and this entire dashboard were completed within a tight three-week timeline.
-            * **The "Snapshot" Reality:** The model looks at a specific moment in time (cross-sectional survey data). It captures **predictive associations**, but does not establish causal proof.
-            * **The Migration Data Window:** Migration data was not consistently available over the time period, so a **2-year delta** was used rather than 5 years.
-            * **The Clustering Balancing Act:** In the K-Means model, balancing structural stability against interpretability is difficult. One cluster contains only 4 regions, possibly capturing residual variation.
+            ### 📉 Econometric & Data Constraints
+            * **Cross-Sectional "Snapshot":** The models evaluate survey snapshots at a single point in time. They capture strong **predictive associations** and odds ratios, but cannot establish strict mathematical causality.
+            * **Truncated Migration Window:** Due to inconsistent reporting intervals across Eurostat databases, a **2-year delta** was utilized for net migration instead of a preferred 5-year macro window.
+            * **Clustering Granularity:** The unsupervised K-Means engine optimized at $K=6$, resulting in one cluster containing only four highly distinct regions—capturing essential residual variation but reducing cluster generalization.
             """
         )
 
     with lim_col2:
         st.markdown(
             """
-            ### 🗺️ Survey Reality & Border Friction
-            * **The Region (NUTS 1):** These are coarse, large regions which obscure nuance. NUTS 2 would offer more local detail, but not all countries in the survey support that granularity, and sample sizes per region would decrease significantly. NUTS 1 keeps the sample sizes robust.
-            * **The Regional Imbalance (Fixed Effects Omissions):** Some nations have numerous NUTS regions, providing rich internal variation. Others, like **Portugal and Finland**, map to only a single NUTS-1 region. Because a region cannot vary against itself, these were omitted from the fixed effects model.
-            * **The Stigma of the Ballot Box:** Radical voting behavior often suffers from non-random missing data, due to outright refusals to disclose or social stigma around admitting a far-right vote choice.
+            ### 🗳️ Measurement & Party Classification
+            * **Classification Boundaries:** Mapping party votes into a binary "radical right" field requires synthesizing external populist trackers. Because perfect consensus lacks for borderline cases, some assignments remain open to interpretive debate.
+            * **The ESS "Other" Aggregation:** The European Social Survey clusters niche, minor, or newly formed political entities into a generic "Other" block. This potentially conceals emerging factions or masks splintered radical voter choices.
+            * **Ballot Box Stigma:** Surveying radical voting behavior inevitably suffers from non-random missing data, driven by social desirability bias, non-disclosures, or outright refusals.
+            """
+        )
+
+    with lim_col3:
+        st.markdown(
+            """
+            ### 🗺️ Spatial & Project Scope
+            * **Coarse Spatial Resolution:** Utilizing **NUTS 1** aggregations maintains robust survey sample sizes per region but inherently masks micro-localized economic realities that a finer NUTS 2 lens might uncover.
+            * **Fixed-Effects Omissions:** Single-region nations (such as **Portugal and Finland**) lack internal regional variation. Because a macro-unit cannot vary against itself, these countries were necessarily omitted from the internal fixed-effects modeling step.
+            * **The 3-Week Sprint:** This entire research pipeline—spanning data ingestion, structural harmonization, econometric modeling, and visualization architecture—was executed within a fixed three-week timeline.
             """
         )
 

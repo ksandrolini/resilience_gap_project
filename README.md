@@ -6,45 +6,40 @@ A multi-level, multi-country empirical analysis investigating the intersections 
 
 ## 1. Project Overview
 
-This project investigates the multi-level drivers of radical-right voting behavior across European regions. 
+This project investigates the multi-level drivers of radical-right voting behavior across European regions. Electoral radicalization is rarely a simple byproduct of direct economic hardship; instead, it occurs at the intersection of individual attitudes and localized regional dynamics. 
 
-The core premise is that electoral radicalization is not a simple byproduct of direct economic hardship. Instead, it occurs within a complex intersection of individual-level attitudes and localized regional dynamics. The project evaluates this phenomenon through two distinct analytical paths:
+The framework evaluates this phenomenon through two analytical tracks:
 * **Behavioral Inference Modeling:** A fixed-effects Generalized Linear Model (GLM) calculating odds ratios to weigh the predictive power of individual values against regional environments.
-* **Spatial Typologies:** A K-Means clustering approach that groups geographic regions purely by structural metrics, subsequently overlaying survey realities to discover how public sentiment aligns with structural conditions.
+* **Spatial Typologies:** An unsupervised K-Means clustering approach that groups geographic regions purely by structural metrics, subsequently overlaying survey realities to discover how public sentiment aligns with structural conditions.
 
-The project translates these findings into an interactive **Streamlit Dashboard Engine** designed to offer spatial insights for political scientists, public policy researchers, and electoral strategists.
+These insights are synthesized into an interactive **Streamlit Dashboard Engine** built for political scientists, public policy researchers, and electoral strategists.
 
 ---
 
 ## 2. Project Context
 
-Public and media commentary on European populism frequently leans on uniform, sweeping narratives: the "globalization losers" thesis or uniform regional backlashes. 
+Public narratives on European populism frequently rely on sweeping generalities like the "globalization losers" thesis. This project shifts the focus to a finer spatial resolution (**NUTS 1 geographic aggregations**). By bridging individual microdata with regional macro-baselines, it tests a foundational principle:
 
-This project operates at a finer spatial resolution (**NUTS 1 geographic aggregations**). By bridging individual microdata with regional macro-baselines, it explores whether citizens vote for the radical right because of their immediate regional economic surroundings, or if unobserved national baselines and deeper cultural/institutional trust deficits play the true defining role.
-
-The foundational principle guiding this research is:
 > Individual attitudes outweigh short-term economic macro shifts, yet national political histories anchor the absolute baseline likelihood of radical-right support.
 
 ---
 
 ## 3. Data Infrastructure & Scope
 
-The analytical pipeline dynamically integrates and harmonizes individual-level survey microdata with localized macro-regional indicators across a **10-nation European framework**.
+The analytical pipeline harmonizes individual survey microdata with localized macro-regional indicators across a **10-nation European framework**.
 
 * **Survey Core Source:** European Social Survey (ESS) Round 11 (2023/2024 Integrated File, Edition 4.1)
 * **Regional Structural Source:** Eurostat Regional Database (2024 Dataset Releases)
 * **Spatial Geometry Engine:** Standardized NUTS 1 TopoJSON/GeoJSON boundary coordinates
-* **Geographic Alignment Key:** Harmonized **NUTS 1 alphanumeric codes** (e.g., `DE1`, `FR1`) mapping individual respondents directly to their corresponding macro-economic environment.
-* **Core Production Stack:** Python, Pandas, NumPy, Statsmodels (GLM Module), Scikit-Learn (K-Means Processing), Plotly Express & Graph Objects, and Streamlit.
-
----
+* **Geographic Alignment Key:** Harmonized **NUTS 1 alphanumeric codes** (e.g., `DE1`, `FR1`) mapping respondents directly to their corresponding macro-economic environment.
+* **Core Production Stack:** Python, Pandas, NumPy, Statsmodels (GLM Module), Scikit-Learn (K-Means), Plotly Express, and Streamlit.
 
 ### 3.1 Data Access & Local Replication Guide
-To comply with data redistribution licensing agreements and maintain a lightweight open-source repository, **raw data files are explicitly omitted via `.gitignore`**. To locally run or replicate this dashboard environment, download the following source assets:
+To comply with licensing agreements and maintain a lightweight repository, **raw data files are omitted via `.gitignore`**. To locally run or replicate this environment, download the following source assets:
 
 1. **ESS Microdata:** Download the full ESS Round 11 integrated file in SPSS (`.sav`) or CSV format via the official [ESS Data Portal](https://www.europeansocialsurvey.org/data/).
 2. **Eurostat Macro Data:** Extract structural NUTS 1 metrics (regional GDP as a % of the EU average, standardized unemployment rates, and a 2-year delta for net migration) from the [Eurostat Database](https://ec.europa.eu/eurostat/data/database).
-3. **Local Directory Alignment:** Save your raw downloads inside your local project space strictly following this structure:
+3. **Local Directory Alignment:** Save raw downloads inside your local project space strictly following this structure:
    ```text
    └── data/
        ├── 1_raw/
@@ -124,24 +119,23 @@ $$\log\left(\frac{P(Y_i = 1)}{1 - P(Y_i = 1)}\right) = \beta_0 + \beta_1(\text{T
 Where $\delta_{\text{Country}}$ controls for unobserved national-level structural baselines.
 
 ### 7.2 Spatial Clustering & Behavioral Overlay
-The spatial typology engine separates structural macro environments from political attitudes by utilizing a two-step approach:
-1. **Unsupervised K-Means Clustering:** Iterates across the regional metrics (`gdp`, `unemployment`, `migration`) to define $K=6$ optimal structural clusters.
-2. **Attitudinal Overlay Mapping:** Groups the underlying individual respondents by their region's assigned cluster and calculates the median behavioral outcomes (`trust_index`, `radical_right_vote`) to form a complete Structural and Behavioural Profile Matrix.
+The spatial typology engine separates structural macro environments from political attitudes utilizing a two-step approach:
+1. **Unsupervised K-Means Clustering:** Iterates across regional metrics (`gdp`, `unemployment`, `migration`) to define $K=6$ optimal structural clusters.
+2. **Attitudinal Overlay Mapping:** Groups individual respondents by their region's assigned cluster and calculates median behavioral outcomes (`trust_index`, `radical_right_vote`) to generate a complete Structural and Behavioural Profile Matrix.
 
 ---
 
 ## 8. Selected Regional Typology Archetypes ($K=6$)
 
-The spatial clustering engine identifies six distinct regional archetypes across the European canvas:
+The spatial clustering engine identifies six distinct regional archetypes across Europe:
 * **Economically Deprived Periphery:** Lower-than-average GDP, persistent labor market challenges, varying levels of political alienation.
-* **Affluent Established Radical Right Presence:** Strong macroeconomic foundations and high regional wealth, paired with distinct cultural anxieties.
+* **Affluent Established Radical Right Presence:** Strong macroeconomic foundations and high regional wealth paired with distinct cultural anxieties.
 * **High Migration Low Backlash Regions:** Robust demographic influxes matched with resilient institutional trust profiles.
 * **Vulnerable Battlegrounds:** Volatile economic metrics mixed with highly polarized attitudinal variances.
 * **Alienated and Educated Skeptics:** High educational footprints but pronounced structural institutional trust deficits.
 * **Status Quo Powerhouses:** Peak economic performance metrics with stable, highly resilient mainstream democratic support.
 
 ---
-
 ## 9. Key Dashboard Insights
 
 * **The Hardship Paradox:** Economic deprivation does not automatically scale to radical-right support. Several highly affluent clusters record significant radical-right vote shares, while some of the most economically disadvantaged regions maintain baseline support profiles.
@@ -152,9 +146,11 @@ The spatial clustering engine identifies six distinct regional archetypes across
 
 ## 10. Scope, Trade-offs & Limitations
 
-* **The 3-Week Sprint Reality:** This entire research pipeline, data synchronization, econometric modeling, and visualization engine were completed within a strict three-week timeline.
+* **The 3-Week Sprint:** This entire research pipeline, data synchronization, econometric modeling, and visualization engine were completed within a strict three-week timeline.
 * **Cross-Sectional Constraints:** The models evaluate cross-sectional survey snapshots. They capture predictive associations and odds ratios; they do not establish mathematical causality.
-* **Geographic Border Friction:** While large NUTS 1 regions maintain robust survey sample sizes, they mask localized micro-nuances. Furthermore, single-region nations (such as Portugal and Finland) lack internal regional variation and were necessarily omitted from the internal fixed-effects modeling step.
+* **Classification Boundary Friction:** Mapping voting choices to a binary framework required synthesizing external populist trackers. Because academic consensus is lacking for borderline cases, some assignments remain open to interpretive debate.
+* **The ESS "Other" Aggregation:** The European Social Survey frequently clusters niche, minor, or newly formed political entities into a generic "Other" block, potentially concealing emerging factions or masking splintered voter choices.
+* **Geographic Border Friction:** While large NUTS 1 regions maintain robust survey sample sizes, they mask localized micro-nuances. Single-region nations (such as Portugal and Finland) lack internal regional variation and were necessarily omitted from the internal fixed-effects modeling step.
 * **Ballot Box Stigma:** Self-reported voting behavior for radical-right parties contains non-random missing data patterns stemming from social desirability bias and non-disclosures.
 
 ---
