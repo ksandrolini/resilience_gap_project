@@ -52,13 +52,14 @@ requirements. To replicate locally:
 
 **ESS Round 11 and multilevel companion data** — download the .csv files from the [ESS Data Portal](https://ess.sikt.no/en/).
 
-Save files to:
-data/
-├── ESS11_main/
-│   ├── ess_main_raw.csv
-└── ESS11_multilevel/
-│   ├── ESSMD2025_nuts1_e01_1.csv
-│   ├── ess_region_lookup_file_raw.csv
+Save files strictly within your local project environment using this layout:
+
+└── data/
+    ├── ESS11_main/
+    │   └── ess_main_raw.csv
+    └── ESS11_multilevel/
+        ├── ESSMD2025_nuts1_e01_1.csv
+        └── ess_region_lookup_file_raw.csv
 ---
 
 ## Tech Stack
