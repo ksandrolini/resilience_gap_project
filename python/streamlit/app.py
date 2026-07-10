@@ -335,7 +335,7 @@ elif section == "3. Macro Economics & Trust":
     row1_col1, row1_col2 = st.columns(2)
 
     with row1_col1:
-        st.markdown("**Economic Divergence: 5-Year Regional GDP Trajectory vs. EU Average**<br>*(Red = Falling Behind Continental Growth Rate)*", unsafe_allow_html=True)
+        st.markdown("**Economic Divergence: 5-Year Regional GDP Trajectory vs. EU Average, 2017-2022**<br>*(Red = Falling Behind Continental Growth Rate)*", unsafe_allow_html=True)
         fig_gdp_pct = go.Figure(go.Choropleth(
             geojson=nuts1_geojson,
             locations=df_regions["nuts1_region"],
@@ -367,7 +367,7 @@ elif section == "3. Macro Economics & Trust":
         )
 
     with row1_col2:
-        st.markdown("**2-Yr Net Migration Acceleration**<br>*(Red = Inflow Acceleration | Blue = Outflow)*", unsafe_allow_html=True)
+        st.markdown("**2-Yr Net Migration Acceleration, 2020-2022**<br>*(Red = Inflow Acceleration | Blue = Outflow)*", unsafe_allow_html=True)
 
         min_mig, max_mig = -20.0, 40.0
         asymmetric_rdbu = [
@@ -744,7 +744,11 @@ elif section == "5. Regional Typologies":
     st.plotly_chart(fig_clusters, use_container_width=True)
 
     st.markdown("#### Cluster-Level Structural and Behavioural Profile Matrix")
-
+    st.info(
+        """
+        **How to read this table:** Each row represents the typical characteristics of one regional typology. GDP is reported as **GDP per capita relative to the EU average** (e.g., **120 = 20% above** the EU average, **80 = 20% below**), unemployment is the regional unemployment rate (%), and migration is the region's **net migration rate** (crude rate per 1000 residents). Survey measures (trust, and radical-right vote share) are weighted averages of respondents living in those regions.
+        """
+    )
     regional_behavior_means = df_individuals.groupby("nuts1_region", as_index=False)[["trust_index", "radical_right_vote"]].mean()
     df_final_display = df_regions.merge(regional_behavior_means, on="nuts1_region", how="left")
     df_final_display["typology_name"] = df_final_display[cluster_col].map(CLUSTER_LABELS)
